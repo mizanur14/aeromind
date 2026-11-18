@@ -52,6 +52,12 @@ The NASA data is not in the repository; see [docs/DATA.md](docs/DATA.md).
       `aeromind s3-registry`, then `aeromind s3-model-cards`.
 - [ ] Docs and README commands you added were actually run.
 - [ ] No test-set evaluation, or justification and ledger entry included.
+- [ ] Dashboard changes pass `uv run pytest tests/test_dashboard_public.py` and
+      `uv run aeromind dashboard --public` renders every section.
+
+**Merging to `main` updates the live dashboard** at
+<https://aeromind-research.streamlit.app/>: Streamlit Community Cloud redeploys on every push.
+Merge only after CI passes. See [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md).
 
 ## Reporting issues
 

@@ -19,6 +19,8 @@ Status as of v0.3.0. "Done" items have saved runs; everything else is planned, n
 - **Stage 3:**
   - Hash-pinned model registry with conformal calibrators.
   - FastAPI service and Streamlit dashboard.
+  - Public, read-only research dashboard at <https://aeromind-research.streamlit.app/>
+    (added after v0.3.0; committed reports only, no live inference).
   - CPU benchmark, model cards and bundle export/import.
 
 ## Next (methodological priorities)

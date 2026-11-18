@@ -1,5 +1,6 @@
 # AeroMind
 
+[![Live demo](https://img.shields.io/badge/live%20demo-aeromind--research.streamlit.app-FF4B4B)](https://aeromind-research.streamlit.app/)
 ![Python 3.12](https://img.shields.io/badge/python-3.12-3776AB)
 ![License: MIT](https://img.shields.io/badge/license-MIT-green)
 ![CPU only](https://img.shields.io/badge/compute-CPU%20only-lightgrey)
@@ -7,6 +8,22 @@
 **Uncertainty-aware Remaining Useful Life (RUL) prediction for turbofan engines on the NASA
 C-MAPSS simulation benchmark**, with leakage-safe evaluation, calibrated prediction
 intervals, a REST API and a research dashboard.
+
+## Live demo
+
+**[aeromind-research.streamlit.app](https://aeromind-research.streamlit.app/)**: the public,
+read-only research dashboard. It opens without an account.
+
+- **What it shows:** the committed research results, organised as six sections: Research Overview, Model
+  Benchmarking, Robustness & Reliability, Research Methodology, Model Registry and Prediction
+  Demo ([what each contains](#4-run-the-dashboard)). Every chart names the committed report it
+  reads.
+- **What it does not do:** it runs no model, reads no NASA data files and accepts no uploads.
+  The 22 registered models are shown as a catalogue, and live inference is described as a
+  planned feature only.
+- **Hosting:** Streamlit Community Cloud, from `streamlit_app/streamlit_app.py` on `main`
+  ([docs/DEPLOYMENT.md](docs/DEPLOYMENT.md)). A free-tier app sleeps after a period without
+  visitors and takes a short while to wake.
 
 > **Read this first**
 > - The data is **NASA's C-MAPSS simulation benchmark**: simulation-generated, not flight data.
@@ -150,7 +167,8 @@ uv run aeromind dashboard --public          # public mode: exactly what the publ
 
 The dashboard has two modes:
 
-- **Public mode** shows only committed reports and registry metadata. It never loads a model
+- **Public mode** is what runs at [aeromind-research.streamlit.app](https://aeromind-research.streamlit.app/).
+  It shows only committed reports and registry metadata. It never loads a model
   bundle, never reads NASA files and accepts no uploads. It needs only
   `streamlit_app/requirements.txt` (no scikit-learn, XGBoost or PyTorch); see
   [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md).
@@ -159,12 +177,12 @@ The dashboard has two modes:
 
 | Section | Mode | Shows |
 |---|---|---|
-| Research Overview | both | RUL explained, the C-MAPSS subsets, objectives, stages, FD001 CV headline, the ledgered test result, key findings computed from reports, limitations |
-| Model Benchmarking | both | Separate tabs for cross-validation (fold spread, paired Δ), canonical validation, Stage-1 baselines, the official test (ledger) and CPU cost |
-| Robustness & Reliability | both | Conformal coverage over 500 draws, all interval methods, coverage by RUL range, noise, missing readings, frozen sensors, FD001→FD003 shift, ablations |
-| Research Methodology | both | Engine-level splits from the manifests, leakage rules, targets and PHM08, features, model families, evaluation strategy, provenance hashes |
-| Model Registry | both | The 22 registered models with filters, evidence available, calibrators and provenance (catalogue only) |
-| Prediction Demo | both | The planned public inference feature, explained; all controls disabled |
+| Research Overview | public & research | RUL explained, the C-MAPSS subsets, objectives, stages, FD001 CV headline, the ledgered test result, key findings computed from reports, limitations |
+| Model Benchmarking | public & research | Separate tabs for cross-validation (fold spread, paired Δ), canonical validation, Stage-1 baselines, the official test (ledger) and CPU cost |
+| Robustness & Reliability | public & research | Conformal coverage over 500 draws, all interval methods, coverage by RUL range, noise, missing readings, frozen sensors, FD001→FD003 shift, ablations |
+| Research Methodology | public & research | Engine-level splits from the manifests, leakage rules, targets and PHM08, features, model families, evaluation strategy, provenance hashes |
+| Model Registry | public & research | The 22 registered models with filters, evidence available, calibrators and provenance (catalogue only) |
+| Prediction Demo | public & research | The planned public inference feature, explained; all controls disabled |
 | Engine Health Intelligence | research | Held-out validation engine (or an uploaded CSV): predicted RUL at every cycle with a conformal band, ground truth (validation engines only) |
 | Sensor Intelligence | research | Distributions early vs near failure; correlations; XGBoost gain importance; trajectories aligned at failure |
 | Maintenance Simulation | research | **Hypothetical** threshold policies on validation engines with **user-assumed** costs |

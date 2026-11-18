@@ -4,6 +4,37 @@ The public dashboard is the Streamlit app in **public mode**: it shows the commi
 and registry metadata only. It does not need the NASA files, model bundles, the FastAPI
 service, PyTorch, XGBoost or scikit-learn, and it never loads a model.
 
+## Live deployment
+
+| | |
+|---|---|
+| **URL** | <https://aeromind-research.streamlit.app/> |
+| **Host** | Streamlit Community Cloud (free tier) |
+| **Source** | [`mizanur14/aeromind`](https://github.com/mizanur14/aeromind), branch `main`, file `streamlit_app/streamlit_app.py` |
+| **Access** | Public; no account needed (checked from a private browser window) |
+| **Mode** | Public, read-only: committed reports and registry metadata only |
+| **Secrets** | None configured or required |
+
+Operational notes:
+
+- **Redeploys.** Community Cloud redeploys automatically when `main` changes. Every push to
+  `main` therefore updates the live site. Merge only commits whose CI (`test` and
+  `public-dashboard` jobs) has passed.
+- **Sleeping.** A free-tier app sleeps after a period without visitors (currently 12 hours,
+  per Streamlit's documentation). The first visitor afterwards wakes it, which takes a short
+  while.
+- **Python version.** The required setting is Python 3.12, chosen in the app's settings on
+  Community Cloud. The deploy log shows the version actually in use.
+- **Resources.** The app uses about 190 MB at peak when one visitor renders every section
+  (measured locally). This is well below the free tier's memory limit.
+- **Rollback.** Revert the offending commit on `main` (`git revert <sha>`, then push).
+  Community Cloud redeploys the previous behaviour. Never force-push `main`. *Manage app →
+  Reboot* clears the app's memory, and *Delete app* takes the site offline without touching
+  the repository.
+- **Codespaces.** `.devcontainer/devcontainer.json` was added by Community Cloud's
+  "Edit with Codespaces" option. It configures a GitHub Codespace for editing only and has
+  no effect on the live app.
+
 ## Entrypoint and files
 
 | File | Role |
