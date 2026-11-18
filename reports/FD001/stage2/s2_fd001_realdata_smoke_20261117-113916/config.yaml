@@ -1,0 +1,166 @@
+name: s2_fd001_realdata_smoke
+dataset: FD001
+seed: 42
+target_cap: 125
+split_manifest: null
+paths:
+  raw_dir: data/raw/cmapss
+  processed_dir: data/processed
+  manifest_dir: data/manifests
+  artifacts_dir: /tmp/claude-1000/-run-media-tazim-New-Volume-projects-uv/2c724f69-067d-47c3-b09c-0c5f5639ab6b/scratchpad/realsmoke
+  reports_dir: reports
+evaluation:
+  snapshots_per_engine: 10
+  snapshot_seed: 42
+  capped_truth_cap: 125
+  near_eol_threshold: 30
+  rul_bins:
+  - 0
+  - 25
+  - 50
+  - 75
+  - 100
+  - 125
+  - 150
+  - 200
+  - 400
+  selection_metric: snapshot_rmse_target
+  latency_repeats: 50
+cv:
+  folds: 5
+  seed: 42
+  include_canonical: true
+  run_folds:
+  - canonical
+models:
+  gru:
+    kind: deep
+    family: null
+    params: {}
+    features: {}
+    deep:
+      arch: gru
+      features:
+        stats: []
+        windows: []
+      net:
+        dropout: 0.1
+        hidden: 64
+        layers: 1
+      train:
+        batch_size: 256
+        epochs: 2
+        grad_clip: 1.0
+        huber_delta: 10.0
+        inner_val_fraction: 0.15
+        loss: huber
+        lr: 0.001
+        patience: 8
+        scheduler: plateau
+        threads: 4
+        weight_decay: 0.0001
+      window: 30
+    target_cap: default
+  hgb_reference:
+    kind: classical
+    family: hist_gradient_boosting
+    params:
+      learning_rate: 0.05
+      max_iter: 300
+      max_leaf_nodes: 15
+      min_samples_leaf: 20
+    features:
+      windows:
+      - 10
+      - 30
+    deep: {}
+    target_cap: default
+  ridge:
+    kind: classical
+    family: ridge
+    params:
+      alpha: 0.1
+    features:
+      windows:
+      - 10
+      - 30
+    deep: {}
+    target_cap: default
+  tcn:
+    kind: deep
+    family: null
+    params: {}
+    features: {}
+    deep:
+      arch: tcn
+      features:
+        stats: []
+        windows: []
+      net:
+        channels: 32
+        dropout: 0.1
+        kernel: 3
+        levels: 3
+      train:
+        batch_size: 256
+        epochs: 2
+        grad_clip: 1.0
+        huber_delta: 10.0
+        inner_val_fraction: 0.15
+        loss: huber
+        lr: 0.001
+        patience: 8
+        scheduler: plateau
+        threads: 4
+        weight_decay: 0.0001
+      window: 30
+    target_cap: default
+  transformer:
+    kind: deep
+    family: null
+    params: {}
+    features: {}
+    deep:
+      arch: transformer
+      features:
+        stats: []
+        windows: []
+      net:
+        d_model: 32
+        dropout: 0.1
+        ff: 64
+        heads: 4
+        layers: 2
+      train:
+        batch_size: 256
+        epochs: 2
+        grad_clip: 1.0
+        huber_delta: 10.0
+        inner_val_fraction: 0.15
+        loss: huber
+        lr: 0.001
+        patience: 8
+        scheduler: plateau
+        threads: 4
+        weight_decay: 0.0001
+      window: 30
+    target_cap: default
+  xgboost:
+    kind: classical
+    family: xgboost
+    params:
+      colsample_bytree: 0.8
+      learning_rate: 0.05
+      max_depth: 5
+      min_child_weight: 5
+      n_estimators: 300
+      n_jobs: 4
+      subsample: 0.8
+    features:
+      windows:
+      - 10
+      - 30
+    deep: {}
+    target_cap: default
+latency_repeats: 30
+reference_model: hgb_reference

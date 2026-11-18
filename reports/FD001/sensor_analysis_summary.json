@@ -1,0 +1,21 @@
+{
+  "sensors": 21,
+  "effectively_constant": [
+    "sensor_1",
+    "sensor_5",
+    "sensor_10",
+    "sensor_16",
+    "sensor_18",
+    "sensor_19"
+  ],
+  "top_absolute_correlations": {
+    "sensor_11": -0.7181317192085389,
+    "sensor_4": -0.7017713035513337,
+    "sensor_12": 0.6931487099104524,
+    "sensor_7": 0.6788452278745494,
+    "sensor_15": -0.6659053348298762,
+    "sensor_21": 0.6574169005272447,
+    "sensor_20": 0.6533362855586343,
+    "sensor_17": -0.6293968932564038
+  }
+}

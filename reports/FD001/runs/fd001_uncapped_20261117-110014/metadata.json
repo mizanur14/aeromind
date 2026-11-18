@@ -1,0 +1,52 @@
+{
+  "run": "fd001_uncapped_20261117-110014",
+  "config_name": "fd001_uncapped",
+  "dataset": "FD001",
+  "started_utc": "2026-11-17T05:00:14+00:00",
+  "finished_utc": "2026-11-17T05:02:30+00:00",
+  "total_seconds": 136.06985979100045,
+  "feature_seconds": 0.6019138950005072,
+  "peak_rss_mb": 407.8359375,
+  "seed": 42,
+  "selected_model": "random_forest",
+  "selected_params": {
+    "n_estimators": 200,
+    "max_features": 0.33,
+    "max_depth": null,
+    "min_samples_leaf": 20
+  },
+  "selection_metric": "snapshot_rmse_target",
+  "selection_value": 32.354835851744966,
+  "models": {
+    "median": "models/median.joblib",
+    "mean_residual_life": "models/mean_residual_life.joblib",
+    "ridge": "models/ridge.joblib",
+    "random_forest": "models/random_forest.joblib",
+    "hist_gradient_boosting": "models/hist_gradient_boosting.joblib",
+    "xgboost": "models/xgboost.joblib"
+  },
+  "split_manifest": "data/manifests/fd001_split_seed42.json",
+  "split_manifest_sha256": "d2052c2705a305db7833fc9377760490b8bf6cbe6940a42573dce5fff78a8dc8",
+  "n_features": 166,
+  "data_sha256": {
+    "train_FD001.txt": "963b5e22825b34d8b21c69e1aeb4af3e647050eb672ee8834ba4b5d91d2de0f8",
+    "test_FD001.txt": "3cda7109ce17bafb5443f2ac926cfcf88154b941b8c4cf95eb55d1ddd6f52851"
+  },
+  "official_test_labels_read": false,
+  "test_evaluations": [],
+  "environment": {
+    "python": "3.12.15",
+    "platform": "Linux-7.0.0-43-generic-x86_64-with-glibc2.43",
+    "processor": "x86_64",
+    "packages": {
+      "numpy": "2.5.5",
+      "pandas": "3.1.1",
+      "scikit-learn": "1.9.1",
+      "xgboost": "3.4.1",
+      "scipy": "1.18.1",
+      "joblib": "1.6.0",
+      "pyyaml": "6.0.3"
+    },
+    "git_commit": "1b25c6c-dirty"
+  }
+}

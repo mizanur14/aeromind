@@ -1,0 +1,15 @@
+# Example (not yet run): FD002 has six operating conditions, so sensors are normalised
+# per condition (k-means on settings, fitted on training engines only).
+# Create the split first: uv run aeromind split --dataset FD002
+name: fd002_example
+dataset: FD002
+target: {cap: 125}
+features:
+  windows: [10, 30]
+  condition_normalization: true
+  n_conditions: 6
+models:
+  median: {}
+  ridge: {grid: {alpha: [1.0, 10.0]}}
+  xgboost:
+    params: {n_estimators: 300, learning_rate: 0.05, max_depth: 4, subsample: 0.8, colsample_bytree: 0.8}

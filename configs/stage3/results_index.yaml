@@ -1,0 +1,23 @@
+# Index of the committed result reports the dashboard and docs display.
+# Every path is a small, committed report directory produced by a real run.
+registry: reports/registry/model_registry.json
+test_set_ledger: reports/test_set_ledger.json
+stage1:
+  FD001: reports/FD001/runs/fd001_baseline_20261117-105759
+comparison:
+  FD001: reports/FD001/stage2/s2_fd001_comparison_20261117-114027
+benchmarks:
+  FD002: reports/FD002/stage2/s2_fd002_benchmark_20261117-130845
+  FD003: reports/FD003/stage2/s2_fd003_benchmark_20261117-130357
+  FD004: reports/FD004/stage2/s2_fd004_benchmark_20261117-131540
+uq: reports/FD001/stage2/s2_fd001_uq_20261117-121004
+ablation: reports/FD001/stage2/s2_fd001_ablation_20261117-121310
+robustness: reports/FD001/stage2/s2_fd001_robustness_20261117-120738
+api_benchmark: reports/benchmarks/latest
+data_manifests:
+  provenance: data/manifests/cmapss_provenance.json
+  splits:
+    FD001: data/manifests/fd001_split_seed42.json
+    FD002: data/manifests/fd002_split_seed42.json
+    FD003: data/manifests/fd003_split_seed42.json
+    FD004: data/manifests/fd004_split_seed42.json

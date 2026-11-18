@@ -1,0 +1,86 @@
+[project]
+name = "aeromind"
+version = "0.3.0"
+description = "Uncertainty-aware aircraft engine Remaining Useful Life prediction on NASA C-MAPSS"
+readme = "README.md"
+authors = [
+    { name = "Md Mizanur Rahman Tazim" }
+]
+license = "MIT"
+license-files = ["LICENSE"]
+keywords = ["remaining-useful-life", "prognostics", "c-mapss", "conformal-prediction", "predictive-maintenance"]
+classifiers = [
+    "Programming Language :: Python :: 3.12",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Operating System :: OS Independent",
+]
+requires-python = ">=3.12"
+dependencies = [
+    "joblib>=1.6.0",
+    "matplotlib>=3.11.2",
+    "numpy>=2.5.5",
+    "pandas>=3.1.1",
+    "pyarrow>=26.0.1",
+    "pyyaml>=6.0.3",
+    "requests>=2.34.2",
+    "scikit-learn>=1.9.1",
+    "scipy>=1.18.1",
+    "seaborn>=0.13.2",
+    "xgboost>=3.4.1",
+]
+
+[project.optional-dependencies]
+deep = [
+    "torch==2.14.0",
+]
+api = [
+    "fastapi>=0.163.1",
+    "httpx>=0.28.1",
+    "uvicorn>=0.54.0",
+]
+dashboard = [
+    "streamlit>=1.67.0",
+]
+
+[project.scripts]
+aeromind = "aeromind.cli:main"
+
+[build-system]
+requires = ["uv_build>=0.12.23,<0.13.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "pytest>=9.2.0",
+    "ruff>=0.17.5",
+]
+
+[tool.uv.sources]
+torch = { index = "pytorch-cpu" }
+
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true
+
+[tool.ruff]
+line-length = 120
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "NPY"]
+ignore = ["E501"]
+
+[tool.ruff.lint.per-file-ignores]
+"scripts/*.py" = ["E402", "B905"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = [
+    "real_data: requires the NASA C-MAPSS files in data/raw/cmapss (skipped if absent)",
+]
+filterwarnings = [
+    # Starlette's TestClient suggests a different HTTP client package; httpx is the tested one.
+    "ignore:Using `httpx` with `starlette.testclient` is deprecated",
+]

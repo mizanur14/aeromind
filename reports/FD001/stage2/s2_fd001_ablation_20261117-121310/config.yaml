@@ -1,0 +1,624 @@
+name: s2_fd001_ablation
+dataset: FD001
+seed: 42
+target_cap: 125
+split_manifest: null
+paths:
+  raw_dir: data/raw/cmapss
+  processed_dir: data/processed
+  manifest_dir: data/manifests
+  artifacts_dir: artifacts/stage2
+  reports_dir: reports
+evaluation:
+  snapshots_per_engine: 10
+  snapshot_seed: 42
+  capped_truth_cap: 125
+  near_eol_threshold: 30
+  rul_bins:
+  - 0
+  - 25
+  - 50
+  - 75
+  - 100
+  - 125
+  - 150
+  - 200
+  - 400
+  selection_metric: snapshot_rmse_target
+  latency_repeats: 50
+cv:
+  folds: 5
+  seed: 42
+  include_canonical: true
+  run_folds:
+  - cv0
+  - cv1
+  - cv2
+models:
+  gru:
+    kind: deep
+    family: null
+    params: {}
+    features: {}
+    deep:
+      arch: gru
+      window: 30
+      net:
+        hidden: 64
+        layers: 1
+        dropout: 0.1
+      features:
+        windows: []
+        stats: []
+      train:
+        epochs: 40
+        batch_size: 256
+        lr: 0.001
+        weight_decay: 0.0001
+        loss: huber
+        huber_delta: 10.0
+        patience: 8
+        scheduler: plateau
+        grad_clip: 1.0
+        inner_val_fraction: 0.15
+        threads: 4
+    target_cap: default
+  gru__sensors_literature14:
+    kind: deep
+    family: null
+    params: {}
+    features: {}
+    deep:
+      arch: gru
+      window: 30
+      net:
+        hidden: 64
+        layers: 1
+        dropout: 0.1
+      features:
+        windows: []
+        stats: []
+        sensors:
+        - sensor_2
+        - sensor_3
+        - sensor_4
+        - sensor_7
+        - sensor_8
+        - sensor_9
+        - sensor_11
+        - sensor_12
+        - sensor_13
+        - sensor_14
+        - sensor_15
+        - sensor_17
+        - sensor_20
+        - sensor_21
+      train:
+        epochs: 40
+        batch_size: 256
+        lr: 0.001
+        weight_decay: 0.0001
+        loss: huber
+        huber_delta: 10.0
+        patience: 8
+        scheduler: plateau
+        grad_clip: 1.0
+        inner_val_fraction: 0.15
+        threads: 4
+    target_cap: default
+  gru__sensors_trend12:
+    kind: deep
+    family: null
+    params: {}
+    features: {}
+    deep:
+      arch: gru
+      window: 30
+      net:
+        hidden: 64
+        layers: 1
+        dropout: 0.1
+      features:
+        windows: []
+        stats: []
+        sensors:
+        - sensor_2
+        - sensor_3
+        - sensor_4
+        - sensor_7
+        - sensor_8
+        - sensor_11
+        - sensor_12
+        - sensor_13
+        - sensor_15
+        - sensor_17
+        - sensor_20
+        - sensor_21
+      train:
+        epochs: 40
+        batch_size: 256
+        lr: 0.001
+        weight_decay: 0.0001
+        loss: huber
+        huber_delta: 10.0
+        patience: 8
+        scheduler: plateau
+        grad_clip: 1.0
+        inner_val_fraction: 0.15
+        threads: 4
+    target_cap: default
+  gru__window20:
+    kind: deep
+    family: null
+    params: {}
+    features: {}
+    deep:
+      arch: gru
+      window: 20
+      net:
+        hidden: 64
+        layers: 1
+        dropout: 0.1
+      features:
+        windows: []
+        stats: []
+      train:
+        epochs: 40
+        batch_size: 256
+        lr: 0.001
+        weight_decay: 0.0001
+        loss: huber
+        huber_delta: 10.0
+        patience: 8
+        scheduler: plateau
+        grad_clip: 1.0
+        inner_val_fraction: 0.15
+        threads: 4
+    target_cap: default
+  gru__window50:
+    kind: deep
+    family: null
+    params: {}
+    features: {}
+    deep:
+      arch: gru
+      window: 50
+      net:
+        hidden: 64
+        layers: 1
+        dropout: 0.1
+      features:
+        windows: []
+        stats: []
+      train:
+        epochs: 40
+        batch_size: 256
+        lr: 0.001
+        weight_decay: 0.0001
+        loss: huber
+        huber_delta: 10.0
+        patience: 8
+        scheduler: plateau
+        grad_clip: 1.0
+        inner_val_fraction: 0.15
+        threads: 4
+    target_cap: default
+  gru__with_settings:
+    kind: deep
+    family: null
+    params: {}
+    features: {}
+    deep:
+      arch: gru
+      window: 30
+      net:
+        hidden: 64
+        layers: 1
+        dropout: 0.1
+      features:
+        windows: []
+        stats: []
+        include_settings: true
+      train:
+        epochs: 40
+        batch_size: 256
+        lr: 0.001
+        weight_decay: 0.0001
+        loss: huber
+        huber_delta: 10.0
+        patience: 8
+        scheduler: plateau
+        grad_clip: 1.0
+        inner_val_fraction: 0.15
+        threads: 4
+    target_cap: default
+  gru__capacity_small:
+    kind: deep
+    family: null
+    params: {}
+    features: {}
+    deep:
+      arch: gru
+      window: 30
+      net:
+        hidden: 16
+        layers: 1
+        dropout: 0.1
+      features:
+        windows: []
+        stats: []
+      train:
+        epochs: 40
+        batch_size: 256
+        lr: 0.001
+        weight_decay: 0.0001
+        loss: huber
+        huber_delta: 10.0
+        patience: 8
+        scheduler: plateau
+        grad_clip: 1.0
+        inner_val_fraction: 0.15
+        threads: 4
+    target_cap: default
+  gru__capacity_large:
+    kind: deep
+    family: null
+    params: {}
+    features: {}
+    deep:
+      arch: gru
+      window: 30
+      net:
+        hidden: 128
+        layers: 2
+        dropout: 0.1
+      features:
+        windows: []
+        stats: []
+      train:
+        epochs: 40
+        batch_size: 256
+        lr: 0.001
+        weight_decay: 0.0001
+        loss: huber
+        huber_delta: 10.0
+        patience: 8
+        scheduler: plateau
+        grad_clip: 1.0
+        inner_val_fraction: 0.15
+        threads: 4
+    target_cap: default
+  gru__engineered_inputs:
+    kind: deep
+    family: null
+    params: {}
+    features: {}
+    deep:
+      arch: gru
+      window: 30
+      net:
+        hidden: 64
+        layers: 1
+        dropout: 0.1
+      features:
+        windows:
+        - 10
+        stats:
+        - mean
+        - std
+        - slope
+      train:
+        epochs: 40
+        batch_size: 256
+        lr: 0.001
+        weight_decay: 0.0001
+        loss: huber
+        huber_delta: 10.0
+        patience: 8
+        scheduler: plateau
+        grad_clip: 1.0
+        inner_val_fraction: 0.15
+        threads: 4
+    target_cap: default
+  gru__uncapped_target:
+    kind: deep
+    family: null
+    params: {}
+    features: {}
+    deep:
+      arch: gru
+      window: 30
+      net:
+        hidden: 64
+        layers: 1
+        dropout: 0.1
+      features:
+        windows: []
+        stats: []
+      train:
+        epochs: 40
+        batch_size: 256
+        lr: 0.001
+        weight_decay: 0.0001
+        loss: huber
+        huber_delta: 10.0
+        patience: 8
+        scheduler: plateau
+        grad_clip: 1.0
+        inner_val_fraction: 0.15
+        threads: 4
+    target_cap: null
+  gru__loss_mae:
+    kind: deep
+    family: null
+    params: {}
+    features: {}
+    deep:
+      arch: gru
+      window: 30
+      net:
+        hidden: 64
+        layers: 1
+        dropout: 0.1
+      features:
+        windows: []
+        stats: []
+      train:
+        epochs: 40
+        batch_size: 256
+        lr: 0.001
+        weight_decay: 0.0001
+        loss: mae
+        huber_delta: 10.0
+        patience: 8
+        scheduler: plateau
+        grad_clip: 1.0
+        inner_val_fraction: 0.15
+        threads: 4
+    target_cap: default
+  gru__loss_mse:
+    kind: deep
+    family: null
+    params: {}
+    features: {}
+    deep:
+      arch: gru
+      window: 30
+      net:
+        hidden: 64
+        layers: 1
+        dropout: 0.1
+      features:
+        windows: []
+        stats: []
+      train:
+        epochs: 40
+        batch_size: 256
+        lr: 0.001
+        weight_decay: 0.0001
+        loss: mse
+        huber_delta: 10.0
+        patience: 8
+        scheduler: plateau
+        grad_clip: 1.0
+        inner_val_fraction: 0.15
+        threads: 4
+    target_cap: default
+  xgboost:
+    kind: classical
+    family: xgboost
+    params:
+      n_estimators: 300
+      learning_rate: 0.05
+      subsample: 0.8
+      colsample_bytree: 0.8
+      max_depth: 5
+      min_child_weight: 5
+      n_jobs: 4
+    features:
+      windows:
+      - 10
+      - 30
+    deep: {}
+    target_cap: default
+  xgboost__sensors_literature14:
+    kind: classical
+    family: xgboost
+    params:
+      n_estimators: 300
+      learning_rate: 0.05
+      subsample: 0.8
+      colsample_bytree: 0.8
+      max_depth: 5
+      min_child_weight: 5
+      n_jobs: 4
+    features:
+      windows:
+      - 10
+      - 30
+      sensors:
+      - sensor_2
+      - sensor_3
+      - sensor_4
+      - sensor_7
+      - sensor_8
+      - sensor_9
+      - sensor_11
+      - sensor_12
+      - sensor_13
+      - sensor_14
+      - sensor_15
+      - sensor_17
+      - sensor_20
+      - sensor_21
+    deep: {}
+    target_cap: default
+  xgboost__sensors_trend12:
+    kind: classical
+    family: xgboost
+    params:
+      n_estimators: 300
+      learning_rate: 0.05
+      subsample: 0.8
+      colsample_bytree: 0.8
+      max_depth: 5
+      min_child_weight: 5
+      n_jobs: 4
+    features:
+      windows:
+      - 10
+      - 30
+      sensors:
+      - sensor_2
+      - sensor_3
+      - sensor_4
+      - sensor_7
+      - sensor_8
+      - sensor_11
+      - sensor_12
+      - sensor_13
+      - sensor_15
+      - sensor_17
+      - sensor_20
+      - sensor_21
+    deep: {}
+    target_cap: default
+  xgboost__window20:
+    kind: classical
+    family: xgboost
+    params:
+      n_estimators: 300
+      learning_rate: 0.05
+      subsample: 0.8
+      colsample_bytree: 0.8
+      max_depth: 5
+      min_child_weight: 5
+      n_jobs: 4
+    features:
+      windows:
+      - 10
+      - 20
+    deep: {}
+    target_cap: default
+  xgboost__window50:
+    kind: classical
+    family: xgboost
+    params:
+      n_estimators: 300
+      learning_rate: 0.05
+      subsample: 0.8
+      colsample_bytree: 0.8
+      max_depth: 5
+      min_child_weight: 5
+      n_jobs: 4
+    features:
+      windows:
+      - 10
+      - 50
+    deep: {}
+    target_cap: default
+  xgboost__with_settings:
+    kind: classical
+    family: xgboost
+    params:
+      n_estimators: 300
+      learning_rate: 0.05
+      subsample: 0.8
+      colsample_bytree: 0.8
+      max_depth: 5
+      min_child_weight: 5
+      n_jobs: 4
+    features:
+      windows:
+      - 10
+      - 30
+      include_settings: true
+    deep: {}
+    target_cap: default
+  xgboost__capacity_small:
+    kind: classical
+    family: xgboost
+    params:
+      n_estimators: 300
+      learning_rate: 0.05
+      subsample: 0.8
+      colsample_bytree: 0.8
+      max_depth: 3
+      min_child_weight: 5
+      n_jobs: 4
+    features:
+      windows:
+      - 10
+      - 30
+    deep: {}
+    target_cap: default
+  xgboost__capacity_large:
+    kind: classical
+    family: xgboost
+    params:
+      n_estimators: 300
+      learning_rate: 0.05
+      subsample: 0.8
+      colsample_bytree: 0.8
+      max_depth: 8
+      min_child_weight: 5
+      n_jobs: 4
+    features:
+      windows:
+      - 10
+      - 30
+    deep: {}
+    target_cap: default
+  xgboost__raw_inputs:
+    kind: classical
+    family: xgboost
+    params:
+      n_estimators: 300
+      learning_rate: 0.05
+      subsample: 0.8
+      colsample_bytree: 0.8
+      max_depth: 5
+      min_child_weight: 5
+      n_jobs: 4
+    features:
+      windows: []
+      stats: []
+    deep: {}
+    target_cap: default
+  xgboost__uncapped_target:
+    kind: classical
+    family: xgboost
+    params:
+      n_estimators: 300
+      learning_rate: 0.05
+      subsample: 0.8
+      colsample_bytree: 0.8
+      max_depth: 5
+      min_child_weight: 5
+      n_jobs: 4
+    features:
+      windows:
+      - 10
+      - 30
+    deep: {}
+    target_cap: null
+  xgboost__loss_mae:
+    kind: classical
+    family: xgboost
+    params:
+      n_estimators: 300
+      learning_rate: 0.05
+      subsample: 0.8
+      colsample_bytree: 0.8
+      max_depth: 5
+      min_child_weight: 5
+      n_jobs: 4
+      objective: reg:absoluteerror
+    features:
+      windows:
+      - 10
+      - 30
+    deep: {}
+    target_cap: default
+latency_repeats: 30
+reference_model: null

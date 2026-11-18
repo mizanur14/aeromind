@@ -1,0 +1,42 @@
+# Stage-3 model registry: which trained bundles are servable, with metrics copied from the
+# saved run reports. Build with:  uv run aeromind s3-registry --config configs/stage3/registry.yaml
+# Requires the local artifacts/ bundles and the NASA files (for conformal calibration).
+name: aeromind_registry
+output: reports/registry/model_registry.json
+ledger: reports/test_set_ledger.json
+
+sources:
+  # Stage 1: the validation-selected model only (the one with a ledgered official test result).
+  - kind: stage1_run
+    run_dir: artifacts/runs/fd001_baseline_20261117-105759
+    report_dir: reports/FD001/runs/fd001_baseline_20261117-105759
+    models: [hist_gradient_boosting]
+  # Stage 2: canonical-fold bundles of the FD001 CV comparison (metrics: 5-fold CV + canonical).
+  - kind: stage2_comparison
+    run_dir: artifacts/stage2/s2_fd001_comparison_20261117-114027
+    report_dir: reports/FD001/stage2/s2_fd001_comparison_20261117-114027
+  # Stage 2: separate per-subset benchmarks (canonical fold only, no CV).
+  - kind: stage2_comparison
+    run_dir: artifacts/stage2/s2_fd002_benchmark_20261117-130845
+    report_dir: reports/FD002/stage2/s2_fd002_benchmark_20261117-130845
+  - kind: stage2_comparison
+    run_dir: artifacts/stage2/s2_fd003_benchmark_20261117-130357
+    report_dir: reports/FD003/stage2/s2_fd003_benchmark_20261117-130357
+  - kind: stage2_comparison
+    run_dir: artifacts/stage2/s2_fd004_benchmark_20261117-131540
+    report_dir: reports/FD004/stage2/s2_fd004_benchmark_20261117-131540
+
+# Engine-level split conformal on the 15 FD001 calibration engines, for the models whose
+# coverage was evaluated in the Stage-2 UQ run.
+calibration:
+  models: [fd001-s2-hgb_reference, fd001-s2-xgboost, fd001-s2-gru, fd001-s2-transformer]
+  levels: [0.8, 0.9]
+  seed: 42
+  uq_report: reports/FD001/stage2/s2_fd001_uq_20261117-121004
+
+default_model: fd001-s2-xgboost
+default_model_rationale: >-
+  Demo default chosen on validation evidence only: lower paired CV RMSE than the HGB reference
+  on 5/5 folds (by 0.26 cycles, within fold spread), 0.35 ms single-input CPU latency, and the
+  smallest degradation under the FD001->FD003 shift. Not claimed to be the most accurate model;
+  GRU and Transformer CV means are lower but within fold variability.

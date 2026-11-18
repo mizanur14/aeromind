@@ -1,0 +1,24 @@
+{
+  "name": "s2_fd001_ablation",
+  "dataset": "FD001",
+  "started_utc": "2026-11-17T06:13:10+00:00",
+  "finished_utc": "2026-11-17T07:03:54+00:00",
+  "split_manifest_sha256": "d2052c2705a305db7833fc9377760490b8bf6cbe6940a42573dce5fff78a8dc8",
+  "official_test_labels_read": false,
+  "isolated_processes": true,
+  "environment": {
+    "python": "3.12.15",
+    "platform": "Linux-7.0.0-43-generic-x86_64-with-glibc2.43",
+    "processor": "x86_64",
+    "packages": {
+      "numpy": "2.5.5",
+      "pandas": "3.1.1",
+      "scikit-learn": "1.9.1",
+      "xgboost": "3.4.1",
+      "scipy": "1.18.1",
+      "joblib": "1.6.0",
+      "pyyaml": "6.0.3"
+    },
+    "git_commit": "2962657-dirty"
+  }
+}

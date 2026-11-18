@@ -1,0 +1,24 @@
+{
+  "name": "s2_fd003_benchmark",
+  "dataset": "FD003",
+  "started_utc": "2026-11-17T07:03:57+00:00",
+  "finished_utc": "2026-11-17T07:08:43+00:00",
+  "split_manifest_sha256": "2d80647cac9307556fc47373c5f4913f716926db8a82490bb022acabe7912695",
+  "official_test_labels_read": false,
+  "isolated_processes": true,
+  "environment": {
+    "python": "3.12.15",
+    "platform": "Linux-7.0.0-43-generic-x86_64-with-glibc2.43",
+    "processor": "x86_64",
+    "packages": {
+      "numpy": "2.5.5",
+      "pandas": "3.1.1",
+      "scikit-learn": "1.9.1",
+      "xgboost": "3.4.1",
+      "scipy": "1.18.1",
+      "joblib": "1.6.0",
+      "pyyaml": "6.0.3"
+    },
+    "git_commit": "2962657-dirty"
+  }
+}

@@ -1,0 +1,12 @@
+# Robustness of the canonical-fold models from the FD001 Stage-2 comparison run.
+# Inputs of the 15 canonical validation engines are corrupted; models are NOT retrained.
+# Shift: FD001-trained models on FD003 validation engines (adds fan fault mode) - a stress
+# test without adaptation, not a transfer-learning protocol. Official test set not used.
+name: s2_fd001_robustness
+comparison_run: artifacts/stage2/s2_fd001_comparison_20261117-114027
+models: [ridge, xgboost, hgb_reference, tcn, gru, transformer]
+noise_levels: [0.5, 1.0, 2.0]       # x training SD per sensor
+missing_rates: [0.05, 0.2, 0.5]     # fraction of readings removed, causal forward-fill imputation
+seeds: [0, 1, 2]
+dropout_sensors: all_informative    # each informative sensor frozen at its training mean
+shift_datasets: [FD003]

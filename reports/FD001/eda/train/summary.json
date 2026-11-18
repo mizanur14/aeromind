@@ -1,0 +1,105 @@
+{
+  "dataset": "FD001",
+  "scope": "train",
+  "scope_description": "Training-split engines only (from the split manifest). Model-development analysis.",
+  "engines": 70,
+  "rows": 14407,
+  "missing_values": 0,
+  "lifetime": {
+    "count": 70.0,
+    "mean": 205.81428571428572,
+    "std": 47.914565531392554,
+    "min": 128.0,
+    "25%": 178.25,
+    "50%": 197.0,
+    "75%": 214.75,
+    "max": 362.0
+  },
+  "constant_columns": [
+    "setting_3",
+    "sensor_1",
+    "sensor_5",
+    "sensor_10",
+    "sensor_16",
+    "sensor_18",
+    "sensor_19"
+  ],
+  "near_constant_columns": [
+    "sensor_6"
+  ],
+  "informative_sensors": [
+    "sensor_2",
+    "sensor_3",
+    "sensor_4",
+    "sensor_7",
+    "sensor_8",
+    "sensor_9",
+    "sensor_11",
+    "sensor_12",
+    "sensor_13",
+    "sensor_14",
+    "sensor_15",
+    "sensor_17",
+    "sensor_20",
+    "sensor_21"
+  ],
+  "top_rul_spearman": {
+    "sensor_11": -0.7044,
+    "sensor_4": -0.689,
+    "sensor_12": 0.6771,
+    "sensor_7": 0.6658,
+    "sensor_15": -0.6559,
+    "sensor_21": 0.6445,
+    "sensor_20": 0.6418,
+    "sensor_2": -0.6168
+  },
+  "strongest_within_engine_trends": {
+    "sensor_9": 0.8259,
+    "sensor_11": 0.8135,
+    "sensor_12": -0.8031,
+    "sensor_14": 0.7855,
+    "sensor_4": 0.7763,
+    "sensor_7": -0.7689,
+    "sensor_8": 0.7643,
+    "sensor_13": 0.7444
+  },
+  "high_vif_columns_gt10": [
+    "sensor_9",
+    "sensor_14"
+  ],
+  "high_spearman_pairs_abs_ge_0_8": [
+    {
+      "a": "sensor_9",
+      "b": "sensor_14",
+      "r": 0.8964206259491463
+    },
+    {
+      "a": "sensor_11",
+      "b": "sensor_12",
+      "r": -0.8291874671214448
+    },
+    {
+      "a": "sensor_4",
+      "b": "sensor_11",
+      "r": 0.8089439519342237
+    },
+    {
+      "a": "sensor_7",
+      "b": "sensor_11",
+      "r": -0.8023662811181723
+    },
+    {
+      "a": "sensor_8",
+      "b": "sensor_13",
+      "r": 0.8011249302303806
+    }
+  ],
+  "operating_conditions": 1,
+  "outlier_rule": "robust |z|>5 on per-engine quadratic-detrended residuals (descriptive only)",
+  "total_outliers": 56,
+  "notes": [
+    "Row-level correlations weight long-lived engines more heavily.",
+    "Correlations are associations, not causal effects.",
+    "Official test files were not read."
+  ]
+}

@@ -1,0 +1,25 @@
+name: s2_fd001_robustness
+comparison_run: artifacts/stage2/s2_fd001_comparison_20261117-114027
+models:
+- ridge
+- xgboost
+- hgb_reference
+- tcn
+- gru
+- transformer
+noise_levels:
+- 0.5
+- 1.0
+- 2.0
+missing_rates:
+- 0.05
+- 0.2
+- 0.5
+seeds:
+- 0
+- 1
+- 2
+dropout_sensors: all_informative
+shift_datasets:
+- FD003
+artifacts_dir: artifacts/stage2

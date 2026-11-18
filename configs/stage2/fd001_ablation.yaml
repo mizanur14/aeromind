@@ -1,0 +1,52 @@
+# One-factor-at-a-time ablations on FD001, CV folds cv0-cv2 (validation engines only).
+# Deep base = GRU: statistically tied with the transformer in the comparison run
+# (CV 13.47 vs 13.37, paired SD vs reference 0.71 vs 1.23) and 1.6x cheaper to train;
+# chosen on validation evidence and compute budget, not on test results.
+# Classical base = XGBoost (lowest CV mean among classical models).
+name: s2_fd001_ablation
+base_config: configs/stage2/fd001_comparison.yaml
+run_folds: [cv0, cv1, cv2]
+base_models:
+  gru:
+    kind: deep
+    deep:
+      arch: gru
+      window: 30
+      net: {hidden: 64, layers: 1, dropout: 0.1}
+      features: {windows: [], stats: []}
+      train: {epochs: 40, batch_size: 256, lr: 0.001, weight_decay: 0.0001, loss: huber, huber_delta: 10.0,
+              patience: 8, scheduler: plateau, grad_clip: 1.0, inner_val_fraction: 0.15, threads: 4}
+  xgboost:
+    kind: classical
+    family: xgboost
+    params: {n_estimators: 300, learning_rate: 0.05, subsample: 0.8, colsample_bytree: 0.8, max_depth: 5, min_child_weight: 5, n_jobs: 4}
+    features: {windows: [10, 30]}
+variants:
+  # Sensor subsets
+  - name: sensors_literature14     # common literature subset (drops near-constant sensor_6)
+    applies_to: [gru, xgboost]
+    features: {sensors: [sensor_2, sensor_3, sensor_4, sensor_7, sensor_8, sensor_9, sensor_11, sensor_12, sensor_13, sensor_14, sensor_15, sensor_17, sensor_20, sensor_21]}
+  - name: sensors_trend12          # train-scope EDA: sign consistency 1.0 and |median rho| >= 0.5
+    applies_to: [gru, xgboost]
+    features: {sensors: [sensor_2, sensor_3, sensor_4, sensor_7, sensor_8, sensor_11, sensor_12, sensor_13, sensor_15, sensor_17, sensor_20, sensor_21]}
+  # Window length (deep: input window; classical: longest rolling window)
+  - {name: window20, applies_to: [gru], deep: {window: 20}}
+  - {name: window50, applies_to: [gru], deep: {window: 50}}
+  - {name: window20, applies_to: [xgboost], features: {windows: [10, 20]}}
+  - {name: window50, applies_to: [xgboost], features: {windows: [10, 50]}}
+  # Operating settings
+  - {name: with_settings, applies_to: [gru, xgboost], features: {include_settings: true}}
+  # Capacity
+  - {name: capacity_small, applies_to: [gru], deep: {net: {hidden: 16}}}
+  - {name: capacity_large, applies_to: [gru], deep: {net: {hidden: 128, layers: 2}}}
+  - {name: capacity_small, applies_to: [xgboost], params: {max_depth: 3}}
+  - {name: capacity_large, applies_to: [xgboost], params: {max_depth: 8}}
+  # Raw vs engineered inputs
+  - {name: engineered_inputs, applies_to: [gru], features: {windows: [10], stats: [mean, std, slope]}}
+  - {name: raw_inputs, applies_to: [xgboost], features: {windows: [], stats: []}}
+  # Target formulation (compare on common truths: capped and true columns)
+  - {name: uncapped_target, applies_to: [gru, xgboost], target_cap: null}
+  # Loss function
+  - {name: loss_mae, applies_to: [gru], deep: {train: {loss: mae}}}
+  - {name: loss_mse, applies_to: [gru], deep: {train: {loss: mse}}}
+  - {name: loss_mae, applies_to: [xgboost], params: {objective: "reg:absoluteerror"}}

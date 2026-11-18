@@ -1,0 +1,393 @@
+{
+  "global_checks": [
+    {
+      "check": "label readers only called in allowed modules",
+      "ok": true,
+      "detail": {
+        "data/cmapss.py": [
+          "add_test_rul",
+          "load_test",
+          "read_test_rul"
+        ],
+        "experiments/test_eval.py": [
+          "load_test"
+        ]
+      }
+    },
+    {
+      "check": "identical validation snapshots across runs",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "check": "identical split manifest across runs",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "check": "identical feature set across runs",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "check": "test ledger matches run metadata",
+      "ok": true,
+      "detail": {
+        "metadata": [
+          [
+            "fd001_baseline_20261117-105759",
+            "2026-11-17T05:02:43+00:00"
+          ]
+        ],
+        "ledger": [
+          [
+            "fd001_baseline_20261117-105759",
+            "2026-11-17T05:02:43+00:00"
+          ]
+        ]
+      }
+    }
+  ],
+  "runs": [
+    {
+      "run": "fd001_baseline_20261117-105759",
+      "target_cap": 125,
+      "checks": [
+        {
+          "check": "split manifest hash matches run",
+          "ok": true,
+          "detail": null
+        },
+        {
+          "check": "run engine IDs match manifest",
+          "ok": true,
+          "detail": null
+        },
+        {
+          "check": "partitions disjoint",
+          "ok": true,
+          "detail": null
+        },
+        {
+          "check": "feature pipeline fitted on train engines only",
+          "ok": true,
+          "detail": null
+        },
+        {
+          "check": "validation predictions cover exactly validation engines",
+          "ok": true,
+          "detail": null
+        },
+        {
+          "check": "no calibration/train engine in any prediction file",
+          "ok": true,
+          "detail": null
+        },
+        {
+          "check": "run data hashes match provenance manifest",
+          "ok": true,
+          "detail": {
+            "train_FD001.txt": "963b5e22825b34d8b21c69e1aeb4af3e647050eb672ee8834ba4b5d91d2de0f8",
+            "test_FD001.txt": "3cda7109ce17bafb5443f2ac926cfcf88154b941b8c4cf95eb55d1ddd6f52851"
+          }
+        },
+        {
+          "check": "training run did not hash/read test labels",
+          "ok": true,
+          "detail": null
+        },
+        {
+          "check": "same snapshot set for every model",
+          "ok": true,
+          "detail": null
+        },
+        {
+          "check": "snapshot count = engines x snapshots_per_engine",
+          "ok": true,
+          "detail": 150
+        },
+        {
+          "check": "snapshots engine-balanced",
+          "ok": true,
+          "detail": [
+            10
+          ]
+        },
+        {
+          "check": "selected model is argmin of validation selection metric",
+          "ok": true,
+          "detail": null
+        },
+        {
+          "check": "per-family winners match search log",
+          "ok": true,
+          "detail": null
+        },
+        {
+          "check": "selection finished before (or same second as) first official test evaluation",
+          "ok": true,
+          "detail": {
+            "selection_finished": "2026-11-17T05:00:03+00:00",
+            "first_test": "2026-11-17T05:02:43+00:00"
+          }
+        },
+        {
+          "check": "reloaded bundles reproduce saved validation predictions (<=1e-9)",
+          "ok": true,
+          "detail": null
+        },
+        {
+          "check": "recomputed validation metrics equal recorded",
+          "ok": true,
+          "detail": null
+        },
+        {
+          "check": "saved test predictions reproduced from unlabelled test inputs",
+          "ok": true,
+          "detail": {
+            "median": 0.0,
+            "mean_residual_life": 0.0,
+            "ridge": 0.0,
+            "random_forest": 2.842170943040401e-14,
+            "hist_gradient_boosting": 0.0,
+            "xgboost": 0.0
+          }
+        },
+        {
+          "check": "recorded test metrics recomputed from saved per-engine predictions",
+          "ok": true,
+          "detail": null
+        },
+        {
+          "check": "test-label hash recorded at test time matches provenance",
+          "ok": true,
+          "detail": null
+        },
+        {
+          "check": "published metadata reflects test evaluations",
+          "ok": true,
+          "detail": null
+        }
+      ],
+      "measured": {
+        "n_fits": 16,
+        "official_test_evaluations": 1,
+        "reload": {
+          "median": {
+            "max_abs_diff": 0.0,
+            "snapshot_rmse_target_recomputed": 41.641325627314025,
+            "snapshot_rmse_target_recorded": 41.641325627314025,
+            "bundle_load_ms": 1.0388410009909421,
+            "features_plus_predict_validation_ms": 134.3873839978187
+          },
+          "mean_residual_life": {
+            "max_abs_diff": 0.0,
+            "snapshot_rmse_target_recomputed": 25.243451782140344,
+            "snapshot_rmse_target_recorded": 25.243451782140344,
+            "bundle_load_ms": 1.0364609988755547,
+            "features_plus_predict_validation_ms": 4.02627199946437
+          },
+          "ridge": {
+            "max_abs_diff": 0.0,
+            "snapshot_rmse_target_recomputed": 14.757598226363175,
+            "snapshot_rmse_target_recorded": 14.757598226363175,
+            "bundle_load_ms": 0.9728199984238017,
+            "features_plus_predict_validation_ms": 136.11083399882773
+          },
+          "random_forest": {
+            "max_abs_diff": 4.263256414560601e-14,
+            "snapshot_rmse_target_recomputed": 11.551233798773396,
+            "snapshot_rmse_target_recorded": 11.551233798773396,
+            "bundle_load_ms": 141.4562149984704,
+            "features_plus_predict_validation_ms": 196.19620500088786
+          },
+          "hist_gradient_boosting": {
+            "max_abs_diff": 0.0,
+            "snapshot_rmse_target_recomputed": 11.262495980324045,
+            "snapshot_rmse_target_recorded": 11.262495980324045,
+            "bundle_load_ms": 48.761810998257715,
+            "features_plus_predict_validation_ms": 162.14350600057514
+          },
+          "xgboost": {
+            "max_abs_diff": 0.0,
+            "snapshot_rmse_target_recomputed": 11.515773133056596,
+            "snapshot_rmse_target_recorded": 11.515773133056596,
+            "bundle_load_ms": 29.041285000857897,
+            "features_plus_predict_validation_ms": 142.23398399917642
+          }
+        },
+        "recorded": {
+          "total_seconds": 123.56729509900015,
+          "sum_fit_seconds": 117.38296256899957,
+          "peak_rss_mb_training_process": 379.53515625,
+          "model_file_mb": {
+            "median": 0.005570411682128906,
+            "mean_residual_life": 0.006997108459472656,
+            "ridge": 0.006984710693359375,
+            "random_forest": 2.9297075271606445,
+            "hist_gradient_boosting": 0.48235607147216797,
+            "xgboost": 0.23975181579589844
+          }
+        }
+      }
+    },
+    {
+      "run": "fd001_uncapped_20261117-110014",
+      "target_cap": null,
+      "checks": [
+        {
+          "check": "split manifest hash matches run",
+          "ok": true,
+          "detail": null
+        },
+        {
+          "check": "run engine IDs match manifest",
+          "ok": true,
+          "detail": null
+        },
+        {
+          "check": "partitions disjoint",
+          "ok": true,
+          "detail": null
+        },
+        {
+          "check": "feature pipeline fitted on train engines only",
+          "ok": true,
+          "detail": null
+        },
+        {
+          "check": "validation predictions cover exactly validation engines",
+          "ok": true,
+          "detail": null
+        },
+        {
+          "check": "no calibration/train engine in any prediction file",
+          "ok": true,
+          "detail": null
+        },
+        {
+          "check": "run data hashes match provenance manifest",
+          "ok": true,
+          "detail": {
+            "train_FD001.txt": "963b5e22825b34d8b21c69e1aeb4af3e647050eb672ee8834ba4b5d91d2de0f8",
+            "test_FD001.txt": "3cda7109ce17bafb5443f2ac926cfcf88154b941b8c4cf95eb55d1ddd6f52851"
+          }
+        },
+        {
+          "check": "training run did not hash/read test labels",
+          "ok": true,
+          "detail": null
+        },
+        {
+          "check": "same snapshot set for every model",
+          "ok": true,
+          "detail": null
+        },
+        {
+          "check": "snapshot count = engines x snapshots_per_engine",
+          "ok": true,
+          "detail": 150
+        },
+        {
+          "check": "snapshots engine-balanced",
+          "ok": true,
+          "detail": [
+            10
+          ]
+        },
+        {
+          "check": "selected model is argmin of validation selection metric",
+          "ok": true,
+          "detail": null
+        },
+        {
+          "check": "per-family winners match search log",
+          "ok": true,
+          "detail": null
+        },
+        {
+          "check": "reloaded bundles reproduce saved validation predictions (<=1e-9)",
+          "ok": true,
+          "detail": null
+        },
+        {
+          "check": "recomputed validation metrics equal recorded",
+          "ok": true,
+          "detail": null
+        },
+        {
+          "check": "published metadata reflects test evaluations",
+          "ok": true,
+          "detail": null
+        }
+      ],
+      "measured": {
+        "n_fits": 16,
+        "official_test_evaluations": 0,
+        "reload": {
+          "median": {
+            "max_abs_diff": 0.0,
+            "snapshot_rmse_target_recomputed": 62.98438960038696,
+            "snapshot_rmse_target_recorded": 62.98438960038696,
+            "bundle_load_ms": 0.9307479995186441,
+            "features_plus_predict_validation_ms": 125.24509700233466
+          },
+          "mean_residual_life": {
+            "max_abs_diff": 0.0,
+            "snapshot_rmse_target_recomputed": 39.58879761202926,
+            "snapshot_rmse_target_recorded": 39.58879761202926,
+            "bundle_load_ms": 1.0372809992986731,
+            "features_plus_predict_validation_ms": 3.4870369963755365
+          },
+          "ridge": {
+            "max_abs_diff": 0.0,
+            "snapshot_rmse_target_recomputed": 35.42487634134055,
+            "snapshot_rmse_target_recorded": 35.42487634134055,
+            "bundle_load_ms": 1.0108930000569671,
+            "features_plus_predict_validation_ms": 134.36747800005833
+          },
+          "random_forest": {
+            "max_abs_diff": 8.526512829121202e-14,
+            "snapshot_rmse_target_recomputed": 32.35483585174497,
+            "snapshot_rmse_target_recorded": 32.354835851744966,
+            "bundle_load_ms": 147.2389070004283,
+            "features_plus_predict_validation_ms": 179.59103300017887
+          },
+          "hist_gradient_boosting": {
+            "max_abs_diff": 0.0,
+            "snapshot_rmse_target_recomputed": 32.92355806629207,
+            "snapshot_rmse_target_recorded": 32.92355806629207,
+            "bundle_load_ms": 41.60244499871624,
+            "features_plus_predict_validation_ms": 161.14819799986435
+          },
+          "xgboost": {
+            "max_abs_diff": 0.0,
+            "snapshot_rmse_target_recomputed": 33.13635357839996,
+            "snapshot_rmse_target_recorded": 33.13635357839996,
+            "bundle_load_ms": 8.794434997980716,
+            "features_plus_predict_validation_ms": 135.91347900000983
+          }
+        },
+        "recorded": {
+          "total_seconds": 136.06985979100045,
+          "sum_fit_seconds": 128.4878969299998,
+          "peak_rss_mb_training_process": 407.8359375,
+          "model_file_mb": {
+            "median": 0.0055713653564453125,
+            "mean_residual_life": 0.006554603576660156,
+            "ridge": 0.00698089599609375,
+            "random_forest": 3.5456628799438477,
+            "hist_gradient_boosting": 0.48222827911376953,
+            "xgboost": 0.23451805114746094
+          }
+        }
+      }
+    }
+  ],
+  "audit_process_peak_rss_mb": 322.26953125,
+  "all_passed": true,
+  "notes": [
+    "The audit reads no official test labels and trains nothing.",
+    "Peak RSS covers this inference-only process (data loading, all bundles, predictions)."
+  ]
+}

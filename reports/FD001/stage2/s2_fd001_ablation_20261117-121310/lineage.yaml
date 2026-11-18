@@ -1,0 +1,69 @@
+gru:
+- gru
+- base
+gru__capacity_large:
+- gru
+- capacity_large
+gru__capacity_small:
+- gru
+- capacity_small
+gru__engineered_inputs:
+- gru
+- engineered_inputs
+gru__loss_mae:
+- gru
+- loss_mae
+gru__loss_mse:
+- gru
+- loss_mse
+gru__sensors_literature14:
+- gru
+- sensors_literature14
+gru__sensors_trend12:
+- gru
+- sensors_trend12
+gru__uncapped_target:
+- gru
+- uncapped_target
+gru__window20:
+- gru
+- window20
+gru__window50:
+- gru
+- window50
+gru__with_settings:
+- gru
+- with_settings
+xgboost:
+- xgboost
+- base
+xgboost__capacity_large:
+- xgboost
+- capacity_large
+xgboost__capacity_small:
+- xgboost
+- capacity_small
+xgboost__loss_mae:
+- xgboost
+- loss_mae
+xgboost__raw_inputs:
+- xgboost
+- raw_inputs
+xgboost__sensors_literature14:
+- xgboost
+- sensors_literature14
+xgboost__sensors_trend12:
+- xgboost
+- sensors_trend12
+xgboost__uncapped_target:
+- xgboost
+- uncapped_target
+xgboost__window20:
+- xgboost
+- window20
+xgboost__window50:
+- xgboost
+- window50
+xgboost__with_settings:
+- xgboost
+- with_settings

@@ -1,0 +1,31 @@
+# Separate benchmark on FD002 (own engine-level split, canonical fold only; validation only).
+# Same target (cap 125) and protocol as FD001. Six operating conditions: sensors normalised per condition (k-means on settings fitted on training engines).
+# Models: classical baselines + GRU and transformer (TCN dropped: worst deep model in FD001 CV).
+name: s2_fd002_benchmark
+dataset: FD002
+seed: 42
+target_cap: 125
+evaluation: {snapshots_per_engine: 10, snapshot_seed: 42, capped_truth_cap: 125, near_eol_threshold: 30}
+cv: {folds: 5, seed: 42, include_canonical: true, run_folds: [canonical]}
+latency_repeats: 30
+reference_model: hgb_reference
+models:
+  ridge: {kind: classical, family: ridge, params: {alpha: 0.1}, features: {windows: [10, 30], condition_normalization: true, n_conditions: 6}}
+  xgboost: {kind: classical, family: xgboost, params: {n_estimators: 300, learning_rate: 0.05, subsample: 0.8, colsample_bytree: 0.8, max_depth: 5, min_child_weight: 5, n_jobs: 4}, features: {windows: [10, 30], condition_normalization: true, n_conditions: 6}}
+  hgb_reference: {kind: classical, family: hist_gradient_boosting, params: {max_iter: 300, learning_rate: 0.05, max_leaf_nodes: 15, min_samples_leaf: 20}, features: {windows: [10, 30], condition_normalization: true, n_conditions: 6}}
+  gru:
+    kind: deep
+    deep:
+      arch: gru
+      window: 30
+      net: {hidden: 64, layers: 1, dropout: 0.1}
+      features: {windows: [], stats: [], condition_normalization: true, n_conditions: 6}
+      train: {epochs: 40, batch_size: 256, lr: 0.001, weight_decay: 0.0001, loss: huber, huber_delta: 10.0, patience: 8, scheduler: plateau, grad_clip: 1.0, inner_val_fraction: 0.15, threads: 4}
+  transformer:
+    kind: deep
+    deep:
+      arch: transformer
+      window: 30
+      net: {d_model: 32, heads: 4, layers: 2, ff: 64, dropout: 0.1}
+      features: {windows: [], stats: [], condition_normalization: true, n_conditions: 6}
+      train: {epochs: 40, batch_size: 256, lr: 0.001, weight_decay: 0.0001, loss: huber, huber_delta: 10.0, patience: 8, scheduler: plateau, grad_clip: 1.0, inner_val_fraction: 0.15, threads: 4}

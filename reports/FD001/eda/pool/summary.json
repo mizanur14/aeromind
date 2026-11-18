@@ -1,0 +1,105 @@
+{
+  "dataset": "FD001",
+  "scope": "pool",
+  "scope_description": "Full training pool (all engines in train_FD00x.txt). EXPLORATORY ONLY \u2014 includes validation and calibration engines; do not use for feature selection.",
+  "engines": 100,
+  "rows": 20631,
+  "missing_values": 0,
+  "lifetime": {
+    "count": 100.0,
+    "mean": 206.31,
+    "std": 46.3427492067573,
+    "min": 128.0,
+    "25%": 177.0,
+    "50%": 199.0,
+    "75%": 229.25,
+    "max": 362.0
+  },
+  "constant_columns": [
+    "setting_3",
+    "sensor_1",
+    "sensor_5",
+    "sensor_10",
+    "sensor_16",
+    "sensor_18",
+    "sensor_19"
+  ],
+  "near_constant_columns": [
+    "sensor_6"
+  ],
+  "informative_sensors": [
+    "sensor_2",
+    "sensor_3",
+    "sensor_4",
+    "sensor_7",
+    "sensor_8",
+    "sensor_9",
+    "sensor_11",
+    "sensor_12",
+    "sensor_13",
+    "sensor_14",
+    "sensor_15",
+    "sensor_17",
+    "sensor_20",
+    "sensor_21"
+  ],
+  "top_rul_spearman": {
+    "sensor_11": -0.7181,
+    "sensor_4": -0.7018,
+    "sensor_12": 0.6931,
+    "sensor_7": 0.6788,
+    "sensor_15": -0.6659,
+    "sensor_21": 0.6574,
+    "sensor_20": 0.6533,
+    "sensor_17": -0.6294
+  },
+  "strongest_within_engine_trends": {
+    "sensor_11": 0.819,
+    "sensor_12": -0.8075,
+    "sensor_4": 0.784,
+    "sensor_7": -0.7742,
+    "sensor_8": 0.7684,
+    "sensor_13": 0.762,
+    "sensor_9": 0.7392,
+    "sensor_15": 0.721
+  },
+  "high_vif_columns_gt10": [
+    "sensor_9",
+    "sensor_14"
+  ],
+  "high_spearman_pairs_abs_ge_0_8": [
+    {
+      "a": "sensor_9",
+      "b": "sensor_14",
+      "r": 0.8861340292260041
+    },
+    {
+      "a": "sensor_11",
+      "b": "sensor_12",
+      "r": -0.8318387532004192
+    },
+    {
+      "a": "sensor_4",
+      "b": "sensor_11",
+      "r": 0.811643705396304
+    },
+    {
+      "a": "sensor_8",
+      "b": "sensor_13",
+      "r": 0.8074591783814637
+    },
+    {
+      "a": "sensor_7",
+      "b": "sensor_11",
+      "r": -0.806043546528499
+    }
+  ],
+  "operating_conditions": 1,
+  "outlier_rule": "robust |z|>5 on per-engine quadratic-detrended residuals (descriptive only)",
+  "total_outliers": 91,
+  "notes": [
+    "Row-level correlations weight long-lived engines more heavily.",
+    "Correlations are associations, not causal effects.",
+    "Official test files were not read."
+  ]
+}

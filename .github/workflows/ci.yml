@@ -1,0 +1,44 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      OMP_WAIT_POLICY: PASSIVE
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          python-version: "3.12"
+      - name: Install (core + deep + api + dashboard)
+        run: uv sync --locked --all-extras
+      - name: Lint
+        run: uv run ruff check .
+      - name: Tests (real-data tests skip without NASA files / model bundles)
+        run: uv run pytest -q
+      - name: Smoke pipelines (synthetic data)
+        run: |
+          uv run aeromind smoke
+          uv run aeromind s2-smoke --no-isolate
+          uv run aeromind s3-smoke
+      - name: API startup (registry without bundles -> status "degraded")
+        run: |
+          uv run aeromind serve --port 8000 & PID=$!
+          for i in $(seq 1 60); do curl -sf http://127.0.0.1:8000/health && break; sleep 1; done
+          curl -sf http://127.0.0.1:8000/health | grep -q '"models_registered":22'
+          kill $PID
+      - name: Dashboard startup
+        run: |
+          uv run aeromind dashboard --headless --port 8501 & PID=$!
+          for i in $(seq 1 60); do curl -sf http://127.0.0.1:8501/_stcore/health && break; sleep 1; done
+          curl -sf http://127.0.0.1:8501/_stcore/health
+          kill $PID

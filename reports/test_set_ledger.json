@@ -1,0 +1,29 @@
+{
+  "policy": "Official test labels are for final reporting only. Entries here must not be used to choose features, models, hyperparameters, targets or calibration. Model development selects on validation engines.",
+  "entries": [
+    {
+      "run": "fd001_baseline_20261117-105759",
+      "dataset": "FD001",
+      "config_name": "fd001_baseline",
+      "target_cap": 125,
+      "selected_model": "hist_gradient_boosting",
+      "selection_finished_utc": "2026-11-17T05:00:03+00:00",
+      "evaluated_utc": "2026-11-17T05:02:43+00:00",
+      "models": [
+        "median",
+        "mean_residual_life",
+        "ridge",
+        "random_forest",
+        "hist_gradient_boosting",
+        "xgboost"
+      ],
+      "all_models_post_hoc": true,
+      "reason": "Stage-1 final evaluation of the pre-registered primary config (backfilled into ledger during Stage-1 audit)",
+      "repeat": false,
+      "selected_rmse_true": 13.603546719030167,
+      "selected_mae_true": 9.641851166773272,
+      "selected_phm08_sum_true": 288.61038153097525,
+      "selected_rmse_capped": 12.326023421757764
+    }
+  ]
+}

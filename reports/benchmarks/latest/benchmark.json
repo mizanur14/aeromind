@@ -1,0 +1,687 @@
+{
+  "measured_utc": "2026-11-17T07:55:48+00:00",
+  "registry": "reports/registry/model_registry.json",
+  "registry_built_utc": "2026-11-17T07:42:55+00:00",
+  "protocol": "median and p95 over 30 repeats after 3 warm-up calls; one full-history validation engine per subset (batch: all validation engines); CPU only; torch threads \u2264 2 per deep model",
+  "environment": {
+    "python": "3.12.15",
+    "platform": "Linux-7.0.0-43-generic-x86_64-with-glibc2.43",
+    "processor": "x86_64",
+    "packages": {
+      "numpy": "2.5.5",
+      "pandas": "3.1.1",
+      "scikit-learn": "1.9.1",
+      "xgboost": "3.4.1",
+      "scipy": "1.18.1",
+      "joblib": "1.6.0",
+      "pyyaml": "6.0.3",
+      "torch": "2.14.0+cpu"
+    },
+    "git_commit": "20752d7-dirty",
+    "cpu_count": 8,
+    "omp_wait_policy": "PASSIVE"
+  },
+  "peak_rss_mb_benchmark_process": 530.65234375,
+  "results": [
+    {
+      "model_id": "fd001-s1-hgb",
+      "path": "in_process",
+      "request": "1 engine \u00d7 259 cycles",
+      "load_s": 0.02395844900092925,
+      "p50_ms": 28.658901999733644,
+      "p95_ms": 36.11494180004228,
+      "min_ms": 27.237041998887435,
+      "n": 30
+    },
+    {
+      "model_id": "fd001-s2-ridge",
+      "path": "in_process",
+      "request": "1 engine \u00d7 259 cycles",
+      "load_s": 0.0007330839980568271,
+      "p50_ms": 23.18845049921947,
+      "p95_ms": 25.82187314874318,
+      "min_ms": 22.56381400002283,
+      "n": 30
+    },
+    {
+      "model_id": "fd001-s2-xgboost",
+      "path": "in_process",
+      "request": "1 engine \u00d7 259 cycles",
+      "load_s": 0.019251759000326274,
+      "p50_ms": 24.934635499448632,
+      "p95_ms": 26.416022500416148,
+      "min_ms": 24.220319999585627,
+      "n": 30
+    },
+    {
+      "model_id": "fd001-s2-hgb_reference",
+      "path": "in_process",
+      "request": "1 engine \u00d7 259 cycles",
+      "load_s": 0.024240530001407024,
+      "p50_ms": 29.85705799983407,
+      "p95_ms": 32.90850034918549,
+      "min_ms": 26.820012000825955,
+      "n": 30
+    },
+    {
+      "model_id": "fd001-s2-tcn",
+      "path": "in_process",
+      "request": "1 engine \u00d7 259 cycles",
+      "load_s": 0.004034432000480592,
+      "p50_ms": 9.705199499876471,
+      "p95_ms": 11.873370600915223,
+      "min_ms": 8.743700000195531,
+      "n": 30
+    },
+    {
+      "model_id": "fd001-s2-gru",
+      "path": "in_process",
+      "request": "1 engine \u00d7 259 cycles",
+      "load_s": 0.0013711339997826144,
+      "p50_ms": 9.988553498260444,
+      "p95_ms": 10.928818950196728,
+      "min_ms": 9.724024999741232,
+      "n": 30
+    },
+    {
+      "model_id": "fd001-s2-transformer",
+      "path": "in_process",
+      "request": "1 engine \u00d7 259 cycles",
+      "load_s": 0.002913611999247223,
+      "p50_ms": 21.6529854988039,
+      "p95_ms": 29.33994959876145,
+      "min_ms": 20.594574998540338,
+      "n": 30
+    },
+    {
+      "model_id": "fd002-s2-ridge",
+      "path": "in_process",
+      "request": "1 engine \u00d7 269 cycles",
+      "load_s": 0.0011857919998874422,
+      "p50_ms": 31.33816500121611,
+      "p95_ms": 43.61696699925231,
+      "min_ms": 28.731295999023132,
+      "n": 30
+    },
+    {
+      "model_id": "fd002-s2-xgboost",
+      "path": "in_process",
+      "request": "1 engine \u00d7 269 cycles",
+      "load_s": 0.006160795001051156,
+      "p50_ms": 31.90085800088127,
+      "p95_ms": 35.65654290032398,
+      "min_ms": 30.680591000418644,
+      "n": 30
+    },
+    {
+      "model_id": "fd002-s2-hgb_reference",
+      "path": "in_process",
+      "request": "1 engine \u00d7 269 cycles",
+      "load_s": 0.026023970000096597,
+      "p50_ms": 37.122645999261294,
+      "p95_ms": 42.79646304985363,
+      "min_ms": 32.67587799928151,
+      "n": 30
+    },
+    {
+      "model_id": "fd002-s2-gru",
+      "path": "in_process",
+      "request": "1 engine \u00d7 269 cycles",
+      "load_s": 0.0030058259981160518,
+      "p50_ms": 19.86602049873909,
+      "p95_ms": 21.687930900407082,
+      "min_ms": 17.771255999832647,
+      "n": 30
+    },
+    {
+      "model_id": "fd002-s2-transformer",
+      "path": "in_process",
+      "request": "1 engine \u00d7 269 cycles",
+      "load_s": 0.007763156998407794,
+      "p50_ms": 33.15021999878809,
+      "p95_ms": 35.31018815046991,
+      "min_ms": 29.177899999922374,
+      "n": 30
+    },
+    {
+      "model_id": "fd003-s2-ridge",
+      "path": "in_process",
+      "request": "1 engine \u00d7 424 cycles",
+      "load_s": 0.0014266300022427458,
+      "p50_ms": 43.744951999542536,
+      "p95_ms": 53.82421944996166,
+      "min_ms": 40.65442199862446,
+      "n": 30
+    },
+    {
+      "model_id": "fd003-s2-xgboost",
+      "path": "in_process",
+      "request": "1 engine \u00d7 424 cycles",
+      "load_s": 0.008227180001995293,
+      "p50_ms": 41.25549199852685,
+      "p95_ms": 43.34201840138121,
+      "min_ms": 39.889993000542745,
+      "n": 30
+    },
+    {
+      "model_id": "fd003-s2-hgb_reference",
+      "path": "in_process",
+      "request": "1 engine \u00d7 424 cycles",
+      "load_s": 0.03523386100278003,
+      "p50_ms": 60.026605999155436,
+      "p95_ms": 77.20932325210015,
+      "min_ms": 47.68809199958923,
+      "n": 30
+    },
+    {
+      "model_id": "fd003-s2-gru",
+      "path": "in_process",
+      "request": "1 engine \u00d7 424 cycles",
+      "load_s": 0.002319737999641802,
+      "p50_ms": 20.450012998480815,
+      "p95_ms": 23.685821300387033,
+      "min_ms": 19.019755000044825,
+      "n": 30
+    },
+    {
+      "model_id": "fd003-s2-transformer",
+      "path": "in_process",
+      "request": "1 engine \u00d7 424 cycles",
+      "load_s": 0.004348062000644859,
+      "p50_ms": 43.83333449914062,
+      "p95_ms": 52.682891549193286,
+      "min_ms": 37.61780800050474,
+      "n": 30
+    },
+    {
+      "model_id": "fd004-s2-ridge",
+      "path": "in_process",
+      "request": "1 engine \u00d7 299 cycles",
+      "load_s": 0.002743606997682946,
+      "p50_ms": 70.0285580005584,
+      "p95_ms": 110.00254270056756,
+      "min_ms": 60.71597800109885,
+      "n": 30
+    },
+    {
+      "model_id": "fd004-s2-xgboost",
+      "path": "in_process",
+      "request": "1 engine \u00d7 299 cycles",
+      "load_s": 0.011956620001001284,
+      "p50_ms": 47.05315100181906,
+      "p95_ms": 59.78081215052952,
+      "min_ms": 40.286677998665255,
+      "n": 30
+    },
+    {
+      "model_id": "fd004-s2-hgb_reference",
+      "path": "in_process",
+      "request": "1 engine \u00d7 299 cycles",
+      "load_s": 0.03348852999988594,
+      "p50_ms": 50.65210200154979,
+      "p95_ms": 53.40040379942366,
+      "min_ms": 47.127853002166376,
+      "n": 30
+    },
+    {
+      "model_id": "fd004-s2-gru",
+      "path": "in_process",
+      "request": "1 engine \u00d7 299 cycles",
+      "load_s": 0.0026384439988760278,
+      "p50_ms": 18.132634499124833,
+      "p95_ms": 21.70105559816875,
+      "min_ms": 17.77056100036134,
+      "n": 30
+    },
+    {
+      "model_id": "fd004-s2-transformer",
+      "path": "in_process",
+      "request": "1 engine \u00d7 299 cycles",
+      "load_s": 0.004626478999853134,
+      "p50_ms": 31.885606998912408,
+      "p95_ms": 34.24465940188384,
+      "min_ms": 28.68703700005426,
+      "n": 30
+    },
+    {
+      "model_id": "fd001-s1-hgb",
+      "path": "http",
+      "request": "1 engine \u00d7 259 cycles",
+      "load_s": null,
+      "p50_ms": 37.09816049922665,
+      "p95_ms": 66.53346530056291,
+      "min_ms": 33.15249799925368,
+      "n": 30
+    },
+    {
+      "model_id": "fd001-s1-hgb",
+      "path": "http_batch",
+      "request": "15 engines \u00d7 3160 cycles total",
+      "load_s": null,
+      "p50_ms": 865.0877154977934,
+      "p95_ms": 1023.9576414996918,
+      "min_ms": 803.5030540013395,
+      "n": 6
+    },
+    {
+      "model_id": "fd001-s2-ridge",
+      "path": "http",
+      "request": "1 engine \u00d7 259 cycles",
+      "load_s": null,
+      "p50_ms": 44.836831499196705,
+      "p95_ms": 54.916942448471666,
+      "min_ms": 42.709977002232336,
+      "n": 30
+    },
+    {
+      "model_id": "fd001-s2-ridge",
+      "path": "http_batch",
+      "request": "15 engines \u00d7 3160 cycles total",
+      "load_s": null,
+      "p50_ms": 486.71991499941214,
+      "p95_ms": 512.2162927509635,
+      "min_ms": 478.4638509991055,
+      "n": 6
+    },
+    {
+      "model_id": "fd001-s2-xgboost",
+      "path": "http",
+      "request": "1 engine \u00d7 259 cycles",
+      "load_s": null,
+      "p50_ms": 37.070847500217496,
+      "p95_ms": 38.803610750437656,
+      "min_ms": 36.095719999138964,
+      "n": 30
+    },
+    {
+      "model_id": "fd001-s2-xgboost",
+      "path": "http_batch",
+      "request": "15 engines \u00d7 3160 cycles total",
+      "load_s": null,
+      "p50_ms": 511.098420001872,
+      "p95_ms": 664.9846599993907,
+      "min_ms": 499.7006879966648,
+      "n": 6
+    },
+    {
+      "model_id": "fd001-s2-hgb_reference",
+      "path": "http",
+      "request": "1 engine \u00d7 259 cycles",
+      "load_s": null,
+      "p50_ms": 53.30739050077682,
+      "p95_ms": 64.0996472997358,
+      "min_ms": 48.206884999672184,
+      "n": 30
+    },
+    {
+      "model_id": "fd001-s2-hgb_reference",
+      "path": "http_batch",
+      "request": "15 engines \u00d7 3160 cycles total",
+      "load_s": null,
+      "p50_ms": 730.1505794985133,
+      "p95_ms": 992.739681499188,
+      "min_ms": 652.0241739999619,
+      "n": 6
+    },
+    {
+      "model_id": "fd001-s2-tcn",
+      "path": "http",
+      "request": "1 engine \u00d7 259 cycles",
+      "load_s": null,
+      "p50_ms": 22.005634999004542,
+      "p95_ms": 23.451031850163417,
+      "min_ms": 20.79684099953738,
+      "n": 30
+    },
+    {
+      "model_id": "fd001-s2-tcn",
+      "path": "http_batch",
+      "request": "15 engines \u00d7 3160 cycles total",
+      "load_s": null,
+      "p50_ms": 263.6504034999234,
+      "p95_ms": 270.5555122502119,
+      "min_ms": 261.76745599877904,
+      "n": 6
+    },
+    {
+      "model_id": "fd001-s2-gru",
+      "path": "http",
+      "request": "1 engine \u00d7 259 cycles",
+      "load_s": null,
+      "p50_ms": 22.441134498876636,
+      "p95_ms": 24.730288150021803,
+      "min_ms": 21.209159000136424,
+      "n": 30
+    },
+    {
+      "model_id": "fd001-s2-gru",
+      "path": "http_batch",
+      "request": "15 engines \u00d7 3160 cycles total",
+      "load_s": null,
+      "p50_ms": 267.52074349860777,
+      "p95_ms": 271.572499249487,
+      "min_ms": 251.37145500048064,
+      "n": 6
+    },
+    {
+      "model_id": "fd001-s2-transformer",
+      "path": "http",
+      "request": "1 engine \u00d7 259 cycles",
+      "load_s": null,
+      "p50_ms": 31.59143000084441,
+      "p95_ms": 34.89844925079524,
+      "min_ms": 29.900399000325706,
+      "n": 30
+    },
+    {
+      "model_id": "fd001-s2-transformer",
+      "path": "http_batch",
+      "request": "15 engines \u00d7 3160 cycles total",
+      "load_s": null,
+      "p50_ms": 399.23795700087794,
+      "p95_ms": 563.6826014988401,
+      "min_ms": 389.72366799862357,
+      "n": 6
+    },
+    {
+      "model_id": "fd002-s2-ridge",
+      "path": "http",
+      "request": "1 engine \u00d7 269 cycles",
+      "load_s": null,
+      "p50_ms": 61.19663749996107,
+      "p95_ms": 69.60226304890965,
+      "min_ms": 56.00347599829547,
+      "n": 30
+    },
+    {
+      "model_id": "fd002-s2-ridge",
+      "path": "http_batch",
+      "request": "39 engines \u00d7 8166 cycles total",
+      "load_s": null,
+      "p50_ms": 2355.6987560004927,
+      "p95_ms": 2671.121743499498,
+      "min_ms": 1658.3552359988971,
+      "n": 6
+    },
+    {
+      "model_id": "fd002-s2-xgboost",
+      "path": "http",
+      "request": "1 engine \u00d7 269 cycles",
+      "load_s": null,
+      "p50_ms": 51.45969150180463,
+      "p95_ms": 56.94421449916262,
+      "min_ms": 47.69990799832158,
+      "n": 30
+    },
+    {
+      "model_id": "fd002-s2-xgboost",
+      "path": "http_batch",
+      "request": "39 engines \u00d7 8166 cycles total",
+      "load_s": null,
+      "p50_ms": 1798.4265569994022,
+      "p95_ms": 2193.2464237479508,
+      "min_ms": 1644.6623900010309,
+      "n": 6
+    },
+    {
+      "model_id": "fd002-s2-hgb_reference",
+      "path": "http",
+      "request": "1 engine \u00d7 269 cycles",
+      "load_s": null,
+      "p50_ms": 59.83225400086667,
+      "p95_ms": 62.71575924965873,
+      "min_ms": 55.836573999840766,
+      "n": 30
+    },
+    {
+      "model_id": "fd002-s2-hgb_reference",
+      "path": "http_batch",
+      "request": "39 engines \u00d7 8166 cycles total",
+      "load_s": null,
+      "p50_ms": 2066.083562998756,
+      "p95_ms": 2399.9684842483475,
+      "min_ms": 1977.1969030007313,
+      "n": 6
+    },
+    {
+      "model_id": "fd002-s2-gru",
+      "path": "http",
+      "request": "1 engine \u00d7 269 cycles",
+      "load_s": null,
+      "p50_ms": 25.620847000027425,
+      "p95_ms": 26.154605048213853,
+      "min_ms": 24.78607800003374,
+      "n": 30
+    },
+    {
+      "model_id": "fd002-s2-gru",
+      "path": "http_batch",
+      "request": "39 engines \u00d7 8166 cycles total",
+      "load_s": null,
+      "p50_ms": 916.8972119987302,
+      "p95_ms": 1056.526222751927,
+      "min_ms": 791.8785809997644,
+      "n": 6
+    },
+    {
+      "model_id": "fd002-s2-transformer",
+      "path": "http",
+      "request": "1 engine \u00d7 269 cycles",
+      "load_s": null,
+      "p50_ms": 43.79662300016207,
+      "p95_ms": 53.004286050963856,
+      "min_ms": 40.02547600248363,
+      "n": 30
+    },
+    {
+      "model_id": "fd002-s2-transformer",
+      "path": "http_batch",
+      "request": "39 engines \u00d7 8166 cycles total",
+      "load_s": null,
+      "p50_ms": 1386.238543998843,
+      "p95_ms": 1593.0058137482774,
+      "min_ms": 1277.156128999195,
+      "n": 6
+    },
+    {
+      "model_id": "fd003-s2-ridge",
+      "path": "http",
+      "request": "1 engine \u00d7 424 cycles",
+      "load_s": null,
+      "p50_ms": 50.01081099908333,
+      "p95_ms": 54.637046499374264,
+      "min_ms": 45.63496399714495,
+      "n": 30
+    },
+    {
+      "model_id": "fd003-s2-ridge",
+      "path": "http_batch",
+      "request": "15 engines \u00d7 3688 cycles total",
+      "load_s": null,
+      "p50_ms": 580.8013250007207,
+      "p95_ms": 677.6705034999395,
+      "min_ms": 534.4887860010203,
+      "n": 6
+    },
+    {
+      "model_id": "fd003-s2-xgboost",
+      "path": "http",
+      "request": "1 engine \u00d7 424 cycles",
+      "load_s": null,
+      "p50_ms": 50.48925000119198,
+      "p95_ms": 61.070015201767085,
+      "min_ms": 47.74529299902497,
+      "n": 30
+    },
+    {
+      "model_id": "fd003-s2-xgboost",
+      "path": "http_batch",
+      "request": "15 engines \u00d7 3688 cycles total",
+      "load_s": null,
+      "p50_ms": 755.8326230009698,
+      "p95_ms": 814.5958402510587,
+      "min_ms": 612.0244750018173,
+      "n": 6
+    },
+    {
+      "model_id": "fd003-s2-hgb_reference",
+      "path": "http",
+      "request": "1 engine \u00d7 424 cycles",
+      "load_s": null,
+      "p50_ms": 56.38413999986369,
+      "p95_ms": 66.81308310035092,
+      "min_ms": 53.07369599904632,
+      "n": 30
+    },
+    {
+      "model_id": "fd003-s2-hgb_reference",
+      "path": "http_batch",
+      "request": "15 engines \u00d7 3688 cycles total",
+      "load_s": null,
+      "p50_ms": 716.2817184980668,
+      "p95_ms": 1016.8847312506841,
+      "min_ms": 648.0220619996544,
+      "n": 6
+    },
+    {
+      "model_id": "fd003-s2-gru",
+      "path": "http",
+      "request": "1 engine \u00d7 424 cycles",
+      "load_s": null,
+      "p50_ms": 29.06325050025771,
+      "p95_ms": 31.636906401035958,
+      "min_ms": 27.958438000496244,
+      "n": 30
+    },
+    {
+      "model_id": "fd003-s2-gru",
+      "path": "http_batch",
+      "request": "15 engines \u00d7 3688 cycles total",
+      "load_s": null,
+      "p50_ms": 290.33415199955925,
+      "p95_ms": 299.9603987491355,
+      "min_ms": 280.51159999813535,
+      "n": 6
+    },
+    {
+      "model_id": "fd003-s2-transformer",
+      "path": "http",
+      "request": "1 engine \u00d7 424 cycles",
+      "load_s": null,
+      "p50_ms": 47.458681499847444,
+      "p95_ms": 57.110688148350135,
+      "min_ms": 46.3210669986438,
+      "n": 30
+    },
+    {
+      "model_id": "fd003-s2-transformer",
+      "path": "http_batch",
+      "request": "15 engines \u00d7 3688 cycles total",
+      "load_s": null,
+      "p50_ms": 448.13225400139345,
+      "p95_ms": 590.9816264984329,
+      "min_ms": 443.62403099876246,
+      "n": 6
+    },
+    {
+      "model_id": "fd004-s2-ridge",
+      "path": "http",
+      "request": "1 engine \u00d7 299 cycles",
+      "load_s": null,
+      "p50_ms": 47.44247549933789,
+      "p95_ms": 50.55458254937548,
+      "min_ms": 45.47502000059467,
+      "n": 30
+    },
+    {
+      "model_id": "fd004-s2-ridge",
+      "path": "http_batch",
+      "request": "37 engines \u00d7 8652 cycles total",
+      "load_s": null,
+      "p50_ms": 1597.5485344988556,
+      "p95_ms": 1639.4841512510538,
+      "min_ms": 1530.8011950000946,
+      "n": 6
+    },
+    {
+      "model_id": "fd004-s2-xgboost",
+      "path": "http",
+      "request": "1 engine \u00d7 299 cycles",
+      "load_s": null,
+      "p50_ms": 47.93934600093053,
+      "p95_ms": 50.25289995010098,
+      "min_ms": 46.710331000213046,
+      "n": 30
+    },
+    {
+      "model_id": "fd004-s2-xgboost",
+      "path": "http_batch",
+      "request": "37 engines \u00d7 8652 cycles total",
+      "load_s": null,
+      "p50_ms": 1646.0356305015011,
+      "p95_ms": 1846.0896397509714,
+      "min_ms": 1595.5805640005565,
+      "n": 6
+    },
+    {
+      "model_id": "fd004-s2-hgb_reference",
+      "path": "http",
+      "request": "1 engine \u00d7 299 cycles",
+      "load_s": null,
+      "p50_ms": 57.21332800021628,
+      "p95_ms": 60.61710480025795,
+      "min_ms": 54.008432001865,
+      "n": 30
+    },
+    {
+      "model_id": "fd004-s2-hgb_reference",
+      "path": "http_batch",
+      "request": "37 engines \u00d7 8652 cycles total",
+      "load_s": null,
+      "p50_ms": 2006.7581245002657,
+      "p95_ms": 2089.239209250991,
+      "min_ms": 1880.3821910005354,
+      "n": 6
+    },
+    {
+      "model_id": "fd004-s2-gru",
+      "path": "http",
+      "request": "1 engine \u00d7 299 cycles",
+      "load_s": null,
+      "p50_ms": 30.36574850193574,
+      "p95_ms": 36.49256155003967,
+      "min_ms": 28.28165699975216,
+      "n": 30
+    },
+    {
+      "model_id": "fd004-s2-gru",
+      "path": "http_batch",
+      "request": "37 engines \u00d7 8652 cycles total",
+      "load_s": null,
+      "p50_ms": 1277.6660519994039,
+      "p95_ms": 1572.3090929986938,
+      "min_ms": 1142.379893000907,
+      "n": 6
+    },
+    {
+      "model_id": "fd004-s2-transformer",
+      "path": "http",
+      "request": "1 engine \u00d7 299 cycles",
+      "load_s": null,
+      "p50_ms": 41.66174800047884,
+      "p95_ms": 51.46119364999322,
+      "min_ms": 39.139305998105556,
+      "n": 30
+    },
+    {
+      "model_id": "fd004-s2-transformer",
+      "path": "http_batch",
+      "request": "37 engines \u00d7 8652 cycles total",
+      "load_s": null,
+      "p50_ms": 1330.4625964992738,
+      "p95_ms": 1393.5511057525218,
+      "min_ms": 1210.5747399982647,
+      "n": 6
+    }
+  ]
+}

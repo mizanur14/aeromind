@@ -1,0 +1,65 @@
+name: s2_fd001_uq
+comparison_run: artifacts/stage2/s2_fd001_comparison_20261117-114027
+point_models:
+- hgb_reference
+- xgboost
+- gru
+- transformer
+quantile_models:
+  hgb_quantile:
+    kind: classical
+    family: hist_gradient_boosting
+    params:
+      max_iter: 300
+      learning_rate: 0.05
+      max_leaf_nodes: 15
+      min_samples_leaf: 20
+    features:
+      windows:
+      - 10
+      - 30
+  transformer_quantile:
+    kind: deep
+    deep:
+      arch: transformer
+      window: 30
+      net:
+        d_model: 32
+        heads: 4
+        layers: 2
+        ff: 64
+        dropout: 0.1
+      features:
+        windows: []
+        stats: []
+      train:
+        epochs: 40
+        batch_size: 256
+        lr: 0.001
+        weight_decay: 0.0001
+        patience: 8
+        scheduler: plateau
+        grad_clip: 1.0
+        inner_val_fraction: 0.15
+        threads: 4
+quantiles:
+- 0.05
+- 0.1
+- 0.25
+- 0.5
+- 0.75
+- 0.9
+- 0.95
+alphas:
+- 0.1
+- 0.2
+reliability_levels:
+- 0.5
+- 0.6
+- 0.7
+- 0.8
+- 0.9
+- 0.95
+draws: 500
+seed: 42
+artifacts_dir: artifacts/stage2
