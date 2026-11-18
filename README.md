@@ -144,20 +144,35 @@ curl -s -X POST http://127.0.0.1:8000/models/fd001-s2-gru/predict \
 ## 4. Run the dashboard
 
 ```bash
-uv run aeromind dashboard                   # http://127.0.0.1:8501
+uv run aeromind dashboard                   # research mode, http://127.0.0.1:8501
+uv run aeromind dashboard --public          # public mode: exactly what the public deployment runs
 ```
 
-| Section | Shows |
-|---|---|
-| Overview | Objective, dataset, research status, model availability, limitations |
-| Engine Health Intelligence | Held-out validation engine (or an uploaded CSV): sensor trajectories, predicted RUL at every cycle with a conformal band, ground truth (validation engines only) |
-| Model Benchmarking | Model selector; CV and canonical MAE/RMSE/PHM08; per-fold spread; paired differences; latency, size, memory; the official test result separately labelled |
-| Sensor Intelligence | Distributions early vs near failure; correlations; XGBoost gain importance; trajectories aligned at failure |
-| Robustness & Experiments | Ablations; noise, dropout, missing readings and shift; interval calibration; reproducibility metadata, ledger, data hashes |
-| Maintenance Simulation | **Hypothetical** threshold policies on validation engines with **user-assumed** costs |
+The dashboard has two modes:
 
-Every view carries an evidence label: model result (validation), dataset ground truth,
-official test (ledgered), or hypothetical illustration.
+- **Public mode** shows only committed reports and registry metadata. It never loads a model
+  bundle, never reads NASA files and accepts no uploads. It needs only
+  `streamlit_app/requirements.txt` (no scikit-learn, XGBoost or PyTorch); see
+  [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md).
+- **Research mode** adds the local pages (marked *local*) that run registered, hash-verified
+  bundles on held-out validation engines or uploads.
+
+| Section | Mode | Shows |
+|---|---|---|
+| Research Overview | both | RUL explained, the C-MAPSS subsets, objectives, stages, FD001 CV headline, the ledgered test result, key findings computed from reports, limitations |
+| Model Benchmarking | both | Separate tabs for cross-validation (fold spread, paired Δ), canonical validation, Stage-1 baselines, the official test (ledger) and CPU cost |
+| Robustness & Reliability | both | Conformal coverage over 500 draws, all interval methods, coverage by RUL range, noise, missing readings, frozen sensors, FD001→FD003 shift, ablations |
+| Research Methodology | both | Engine-level splits from the manifests, leakage rules, targets and PHM08, features, model families, evaluation strategy, provenance hashes |
+| Model Registry | both | The 22 registered models with filters, evidence available, calibrators and provenance (catalogue only) |
+| Prediction Demo | both | The planned public inference feature, explained; all controls disabled |
+| Engine Health Intelligence | research | Held-out validation engine (or an uploaded CSV): predicted RUL at every cycle with a conformal band, ground truth (validation engines only) |
+| Sensor Intelligence | research | Distributions early vs near failure; correlations; XGBoost gain importance; trajectories aligned at failure |
+| Maintenance Simulation | research | **Hypothetical** threshold policies on validation engines with **user-assumed** costs |
+
+Every view carries an evidence label: cross-validation, canonical validation, calibration,
+official test (ledgered), dataset ground truth, registry metadata, live model output,
+hypothetical illustration, or planned capability. Every report-based chart and table names the
+committed file it reads.
 
 ## Reproduce the research
 

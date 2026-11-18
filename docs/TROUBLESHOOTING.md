@@ -22,5 +22,7 @@
 | API `422 invalid_input: Missing or non-finite readings` | The models need complete readings. Impute causally (forward-fill per engine) before calling. |
 | Dashboard: "No locally available model bundles" | Same as the 503 above; the report-based sections still work. |
 | Dashboard: "NASA file ... not found" | Set `AEROMIND_DATA_DIR` or place the files in `data/raw/cmapss/`. |
+| Dashboard: Engine Health / Sensor / Maintenance pages missing | Public mode shows only report-based sections. Use `uv run aeromind dashboard` (research mode). |
+| Public dashboard shows a generic error | `showErrorDetails = "none"` hides details in the browser; read the server log, or run `uv run aeromind dashboard` locally for full errors. |
 | `s3-registry` fails with `Model bundle not found` | The registry is built from local `artifacts/`. Only maintainers with the original runs (or after `s3-import`) can rebuild it unchanged. |
 | High latency, CPU at 100 % while idle | `export OMP_WAIT_POLICY=PASSIVE` (PyTorch/OpenMP spin-waiting). |

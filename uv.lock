@@ -37,6 +37,7 @@ api = [
     { name = "uvicorn" },
 ]
 dashboard = [
+    { name = "altair" },
     { name = "streamlit" },
 ]
 deep = [
@@ -52,6 +53,7 @@ dev = [
 
 [package.metadata]
 requires-dist = [
+    { name = "altair", marker = "extra == 'dashboard'", specifier = ">=6.3.0" },
     { name = "fastapi", marker = "extra == 'api'", specifier = ">=0.163.1" },
     { name = "httpx", marker = "extra == 'api'", specifier = ">=0.28.1" },
     { name = "joblib", specifier = ">=1.6.0" },

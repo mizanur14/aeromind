@@ -1,0 +1,10 @@
+# Direct dependencies of the PUBLIC dashboard (public mode imports nothing else).
+# Compile to requirements.txt pinned to the versions in uv.lock (see docs/DEPLOYMENT.md):
+#   uv export --locked --all-extras --no-hashes --no-emit-project --no-dev -o <tmp>/constraints.txt
+#   uv pip compile streamlit_app/requirements.in -c <tmp>/constraints.txt --python-version 3.12 \
+#     --python-platform x86_64-manylinux_2_28 --no-header --no-annotate -o streamlit_app/requirements.txt
+streamlit
+altair
+numpy
+pandas
+pyyaml

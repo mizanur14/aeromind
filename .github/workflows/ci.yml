@@ -42,3 +42,26 @@ jobs:
           for i in $(seq 1 60); do curl -sf http://127.0.0.1:8501/_stcore/health && break; sleep 1; done
           curl -sf http://127.0.0.1:8501/_stcore/health
           kill $PID
+
+  public-dashboard:
+    # Mirrors Streamlit Community Cloud: only streamlit_app/requirements.txt, no NASA data,
+    # no model bundles, no research stack.
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          python-version: "3.12"
+      - name: Install the deployment requirements only
+        run: |
+          uv venv .venv-public --python 3.12
+          uv pip install --python .venv-public/bin/python -r streamlit_app/requirements.txt pytest
+      - name: Public dashboard tests
+        run: PYTHONPATH=src .venv-public/bin/python -m pytest -q tests/test_dashboard_public.py
+      - name: Public dashboard startup
+        run: |
+          .venv-public/bin/python -m streamlit run streamlit_app/streamlit_app.py --server.headless true --server.port 8502 & PID=$!
+          for i in $(seq 1 60); do curl -sf http://127.0.0.1:8502/_stcore/health && break; sleep 1; done
+          curl -sf http://127.0.0.1:8502/_stcore/health
+          kill $PID

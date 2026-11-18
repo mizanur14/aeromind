@@ -35,7 +35,9 @@ src/aeromind/
                       calibrators), ModelService, CPU benchmark, bundle export/import, model
                       cards, hypothetical maintenance simulation, synthetic smoke
   api/                FastAPI app over ModelService (optional `api` extra)
-  dashboard/          Streamlit app + Streamlit-free data loaders (optional `dashboard` extra)
+  dashboard/          Streamlit app (public/research modes; views/ per section) + Streamlit-free
+                      data loaders (optional `dashboard` extra)
+streamlit_app/        public deployment entrypoint + pinned requirements (docs/DEPLOYMENT.md)
 configs/              experiment YAML files
 data/raw/cmapss/      NASA files (never modified, never committed)
 data/manifests/       split + provenance manifests (committed)
@@ -107,6 +109,9 @@ scripts/              legacy Stage-0 scripts (kept working; CLI supersedes them)
 - Never fabricate predictions, intervals, confidence or savings; an unavailable model is an
   error (503), not a fallback.
 - Model weights, NASA data, `dist/` archives and `.env` files are never committed.
+- The public dashboard (`streamlit_app/`, public mode) shows committed reports and registry
+  metadata only: no bundle loading, no NASA files, no uploads, no torch/xgboost/joblib/sklearn
+  imports. Keep `streamlit_app/requirements.txt` pinned to `uv.lock` (`tests/test_dashboard_public.py`).
 
 ## Testing standards
 

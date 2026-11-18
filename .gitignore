@@ -43,3 +43,6 @@ dist/
 .streamlit/secrets.toml
 *.log
 examples/request.json
+
+# Public dashboard deployment check environments
+.venv-*/

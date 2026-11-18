@@ -261,15 +261,27 @@ def _cmd_serve(args: argparse.Namespace) -> int:
 
 
 def _cmd_dashboard(args: argparse.Namespace) -> int:
+    import os
     import subprocess
 
     if importlib.util.find_spec("streamlit") is None:
         raise RuntimeError("The dashboard needs the optional extra: uv sync --extra dashboard")
-    app = Path(__file__).resolve().parent / "dashboard" / "app.py"
-    cmd = [sys.executable, "-m", "streamlit", "run", str(app), "--server.port", str(args.port), "--server.address", args.host]
+    env = dict(os.environ)
+    if args.public:
+        # Exactly what Streamlit Community Cloud runs (committed reports only).
+        app = Path(__file__).resolve().parents[2] / "streamlit_app" / "streamlit_app.py"
+        if not app.is_file():
+            raise RuntimeError(f"Public entrypoint not found: {app} (run from a source checkout)")
+        env["AEROMIND_DASHBOARD_MODE"] = "public"
+        extra: list[str] = []
+    else:
+        app = Path(__file__).resolve().parent / "dashboard" / "app.py"
+        env["AEROMIND_DASHBOARD_MODE"] = "research"
+        extra = ["--client.showErrorDetails", "full", "--client.toolbarMode", "auto"]  # local research use
+    cmd = [sys.executable, "-m", "streamlit", "run", str(app), "--server.port", str(args.port), "--server.address", args.host, *extra]
     if args.headless:
         cmd += ["--server.headless", "true"]
-    return subprocess.call(cmd)
+    return subprocess.call(cmd, env=env)
 
 
 def _cmd_s3_benchmark(args: argparse.Namespace) -> int:
@@ -431,6 +443,7 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--host", default="127.0.0.1")
     p.add_argument("--port", type=int, default=8501)
     p.add_argument("--headless", action="store_true")
+    p.add_argument("--public", action="store_true", help="run the public deployment entrypoint (committed reports only, no models)")
     p.set_defaults(func=_cmd_dashboard)
 
     p = sub.add_parser("s3-benchmark", help="Stage 3: CPU latency of in-process and HTTP inference")

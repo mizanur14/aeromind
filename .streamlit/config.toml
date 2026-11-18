@@ -1,3 +1,7 @@
+# Shared by the public deployment (Streamlit Community Cloud reads this file at the repository
+# root) and local runs. Public-facing defaults; `aeromind dashboard` re-enables full error
+# details for local research use.
+
 [theme]
 base = "dark"
 primaryColor = "#3987e5"
@@ -8,6 +12,19 @@ textColor = "#e6edf7"
 [server]
 headless = true
 fileWatcherType = "none"
+runOnSave = false
+# Uploads exist only in research mode (one engine's cycles); keep them small.
+maxUploadSize = 2
+enableXsrfProtection = true
+enableCORS = true
+enableStaticServing = false
+
+[client]
+# Hide developer options (rerun, clear cache, deploy) from public viewers.
+toolbarMode = "viewer"
+# Generic error messages in the browser; details go to the server log only.
+showErrorDetails = "none"
+showErrorLinks = false
 
 [browser]
 gatherUsageStats = false

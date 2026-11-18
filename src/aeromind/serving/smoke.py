@@ -23,12 +23,15 @@ from aeromind.research.comparison import run_comparison
 from aeromind.research.smoke import prepare_smoke_data, smoke_stage2_config
 from aeromind.serving.registry import CalibrationSpec, RegistryConfig, SourceSpec, build_registry, write_registry
 
-DASHBOARD_SECTIONS = [
-    "Overview",
-    "Engine Health Intelligence",
+DASHBOARD_SECTIONS = [  # research mode: every public section plus the local model/data pages
+    "Research Overview",
     "Model Benchmarking",
+    "Robustness & Reliability",
+    "Research Methodology",
+    "Model Registry",
+    "Prediction Demo",
+    "Engine Health Intelligence",
     "Sensor Intelligence",
-    "Robustness & Experiments",
     "Maintenance Simulation",
 ]
 
@@ -119,7 +122,7 @@ def check_dashboard(env: dict[str, Any]) -> dict[str, list[str]]:
 
     app_path = str(Path(__file__).resolve().parents[1] / "dashboard" / "app.py")
     problems: dict[str, list[str]] = {}
-    with _env(AEROMIND_REGISTRY=env["registry"], AEROMIND_RESULTS_INDEX=env["index"], AEROMIND_DATA_DIR=env["data_dir"], AEROMIND_ROOT="."):
+    with _env(AEROMIND_REGISTRY=env["registry"], AEROMIND_RESULTS_INDEX=env["index"], AEROMIND_DATA_DIR=env["data_dir"], AEROMIND_ROOT=".", AEROMIND_DASHBOARD_MODE="research"):
         for section in DASHBOARD_SECTIONS:
             at = AppTest.from_file(app_path, default_timeout=120)
             at.run()

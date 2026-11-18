@@ -79,7 +79,8 @@ raw NASA files ──► data.cmapss (parse + validate + RUL) ──► data.spl
 | `aeromind.serving.service` | Stage 3: `ModelService` (lazy hash-verified loading, input validation, intervals, provenance, typed errors) |
 | `aeromind.serving.{benchmark,artifacts,cards,maintenance,smoke}` | CPU benchmark; bundle export/import; model cards; hypothetical maintenance simulation; synthetic smoke |
 | `aeromind.api.app` | FastAPI app: `/health`, `/models`, `/models/{id}`, `/models/{id}/predict`, `/models/{id}/predict/batch` |
-| `aeromind.dashboard` | Streamlit app (`app.py`) and Streamlit-free data loaders (`data.py`) |
+| `aeromind.dashboard` | Streamlit app: `app.py` (navigation, public/research mode), `views/` (one module per section; research pages import the model stack lazily), `state.py` (cached readers, model service), `ui.py` (theme, evidence badges, colours) and Streamlit-free data loaders (`data.py`) |
+| `streamlit_app/streamlit_app.py` | Public deployment entrypoint (public mode; committed reports only). See [DEPLOYMENT.md](DEPLOYMENT.md) |
 
 ## Design decisions
 
