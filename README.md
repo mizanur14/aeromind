@@ -12,7 +12,7 @@ intervals, a REST API and a research dashboard.
 ## Live demo
 
 **[aeromind-research.streamlit.app](https://aeromind-research.streamlit.app/)**: the public,
-read-only research dashboard. It opens without an account.
+read-only research dashboard.
 
 - **What it shows:** the committed research results, organised as six sections: Research Overview, Model
   Benchmarking, Robustness & Reliability, Research Methodology, Model Registry and Prediction
